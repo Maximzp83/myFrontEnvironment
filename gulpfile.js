@@ -96,13 +96,15 @@ var path = {
 // ----------------
 var postcssConfig = [
     autoPrefixer(),
-    postcssFlexbugsFixes()
+    postcssFlexbugsFixes(),
+    mediaPacker()
 ];
 
 // =========== Main ============
 
-gulp.task('test', function() {
-	console.log('gulp test ok')
+gulp.task('test', function(done) {
+	console.log('gulp test ok');
+	done();
 });
 
 // ----browser-sync----
@@ -123,10 +125,11 @@ gulp.task('reload', function(done) {
 
 // =========DEV Builds========
 // --------HTML----------
-gulp.task('html:build', function () {
+gulp.task('html:build', function (done) {
 	gulp.src(path.src.html) 
 	.pipe(HTMLInclude( {prefix: '@@', basepath: '@file'} ))
-	.pipe(gulp.dest(path.build.html)) 
+	.pipe(gulp.dest(path.build.html));
+	done(); 
 });
 
 // --------JS----------
@@ -145,11 +148,11 @@ gulp.task('js:build', function () {
 
 // --------CSS----------
 gulp.task('css:build', function () {
-    gulp.src(path.src.style) 
+    return gulp.src('src/styles/main.scss', { allowEmpty: true }) 
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss(postcssConfig))
-        .pipe(rename({ suffix: '.min' }))
+        .pipe(rename('styles.min.css'))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.css))
 });
@@ -195,7 +198,7 @@ gulp.task('js:buildProd', function () {
 
 // --------CSS----------
 gulp.task('css:buildProd', function () {
-	gulp.src(path.src.style) 
+	gulp.src(path.src.styles) 
 		.pipe(sass().on('error', sass.logError))
 		.pipe(postcss(postcssConfig))
 		.pipe(cssnano({zindex: false}))
@@ -205,7 +208,7 @@ gulp.task('css:buildProd', function () {
         .pipe(size({ title: 'styles size =' })) 
 });
 // ---------Images----------
-gulp.task('image:build', function () {
+gulp.task('image:buildProd', function () {
     gulp.src(path.src.img) 
         .pipe(imagemin({
             progressive: true,
@@ -217,7 +220,7 @@ gulp.task('image:build', function () {
         .pipe(size({ title: 'images size =' }))  
 });
 // ---------Fonts--------
-gulp.task('fonts:build', function() {
+gulp.task('fonts:buildProd', function() {
     gulp.src(path.src.fonts)
         .pipe(gulp.dest(path.buildProd.fonts))
         .pipe(size({ title: 'fonts size =' })) 
@@ -234,18 +237,18 @@ gulp.task('clean:production', function() {
 
 // -----Dev-----
 gulp.task('buildDev', gulp.series('clean:build', gulp.parallel(
-	'html:build','js:build','style:build','fonts:build','image:build'
-	));
+	'html:build','js:build','css:build','fonts:build','image:build'
+	)));
 
 // -----Prod-----
 gulp.task('buildProd', gulp.series('clean:production', gulp.parallel(
-	'html:buildProd','js:buildProd','style:buildProd','fonts:buildProd','image:buildProd'
-	));
+	'html:buildProd','js:buildProd','css:buildProd','fonts:buildProd','image:buildProd'
+	)));
 
 // =========Watch===========
 gulp.task('watch', function() {
     watch( path.watch.html, gulp.series('html:build') );
-    watch( path.watch.styles, gulp.series('style:build') );
+    watch( path.watch.styles, gulp.series('css:build') );
     watch( path.watch.js, gulp.series('js:build') );
     watch( path.watch.img, gulp.series('image:build') );
     watch( path.watch.fonts, gulp.series('fonts:build') );

@@ -1,0 +1,17 @@
+@import "optional/customReset";
+// @import "fonts";
+
+// -----Frames--------
+@import "frames_main.scss";
+
+// ----Common-----
+@import "variables";
+@import "app/common/common.scss";
+
+//------Partials-----
+@import "app/partials/head.scss";
+@import "app/partials/header.scss";
+@import "app/partials/footer.scss";
+
+//-----App-----
+@import "app/homePage.scss";

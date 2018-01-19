@@ -79,7 +79,8 @@ var path = {
     src: { //patch for source files
         html: 'src/*.html', 
         js: 'src/js/main.js',
-        styles: 'src/styles/main.scss',
+        scss: 'src/styles/main.scss',
+        css: 'src/styles/*.css',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
     },
@@ -148,11 +149,11 @@ gulp.task('js:build', function () {
 
 // --------CSS----------
 gulp.task('css:build', function () {
-    return gulp.src('src/styles/main.scss', { allowEmpty: true }) 
+    return gulp.src([path.src.scss, path.src.css]) 
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss(postcssConfig))
-        .pipe(rename('styles.min.css'))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.css))
 });
@@ -229,7 +230,7 @@ gulp.task('fonts:buildProd', function() {
 // =========Build===========
 
 gulp.task('clean:build', function() {
-    return del(patch.cleanBuild);
+    return del(path.cleanBuild);
 });
 gulp.task('clean:production', function() {
     return del(patch.cleanProduction);

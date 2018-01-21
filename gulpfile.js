@@ -36,22 +36,19 @@ size 				  	= require('gulp-size');
 
 // ===========OPTIONS==============
 var serverDevConfig = {
-    server: {
-        baseDir: "./build"
-    },
-    tunnel: false,
-    ghostMode: false,
-    online: false,
+	server: { baseDir: 'build' },
+
+	tunnel: false,
+	ghostMode: false,
+	online: false,
 	open: false,
-    host: 'localhost',
-    logPrefix: "FrontendDEV",
-    reloadDelay: 500
+	host: 'localhost',
+	logPrefix: "FrontendDEV",
+	reloadDelay: 500
 };
 // ----------
 var serverProdConfig = {
-    server: {
-        baseDir: "./production"
-    },
+    server: { baseDir: "production" },
     tunnel: true,  //you can set URL name here
     ghostMode: false,
     online: true,
@@ -110,11 +107,12 @@ gulp.task('test', function(done) {
 
 // ----browser-sync----
 gulp.task('serverDev', function() {
-	browserSync.init({ serverDevConfig });
+	browserSync.init( serverDevConfig );
+	
 });
 
 gulp.task('serverProd', function() {
-	browserSync.init({ serverProdConfig	});
+	browserSync.init( serverProdConfig );
 });
 
 gulp.task('reload', function(done) {
@@ -126,7 +124,7 @@ gulp.task('reload', function(done) {
 
 // =========DEV Builds========
 // --------HTML----------
-gulp.task('html:build', function (done) {
+gulp.task('build:html', function (done) {
 	gulp.src(path.src.html) 
 	.pipe(HTMLInclude( {prefix: '@@', basepath: '@file'} ))
 	.pipe(gulp.dest(path.build.html));
@@ -134,12 +132,12 @@ gulp.task('html:build', function (done) {
 });
 
 // --------JS----------
-gulp.task('js:build', function () {
-    gulp.src(path.src.js)
+gulp.task('build:js', function () {
+    return gulp.src(path.src.js)
         .pipe(include()).on('error', console.error) 
         .pipe(sourcemaps.init()) 
-        .pipe(babel( {presets: ['es2015']}) ).on('error', function(err) {
-            notify({ title: 'js:build task error!' }).write(err.message);
+        .pipe(babel( {presets: ['env']}) ).on('error', function(err) {
+            notify({ title: 'build:js task error!' }).write(err.message);
             this.emit('end');
         })
         .pipe(rename({ suffix: '.min' }))
@@ -148,7 +146,7 @@ gulp.task('js:build', function () {
 });
 
 // --------CSS----------
-gulp.task('css:build', function () {
+gulp.task('build:css', function () {
     return gulp.src([path.src.scss, path.src.css]) 
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
@@ -159,8 +157,8 @@ gulp.task('css:build', function () {
 });
 
 // --------Images----------
-gulp.task('image:build', function () {
-    gulp.src(path.src.img) 
+gulp.task('build:image', function () {
+   return gulp.src(path.src.img) 
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false, cleanupIDs: true}],
@@ -170,24 +168,24 @@ gulp.task('image:build', function () {
         .pipe(gulp.dest(path.build.img)) 
 });
 // --------Fonts--------
-gulp.task('fonts:build', function() {
-    gulp.src(path.src.fonts)
+gulp.task('build:fonts', function() {
+    return gulp.src(path.src.fonts)
         .pipe(gulp.dest(path.build.fonts))
 });
 
 // =========PROD Builds========
 // --------HTML----------
-gulp.task('html:buildProd', function () {
+gulp.task('buildProd:html', function () {
 	gulp.src(path.src.html) 
 		.pipe(HTMLInclude( {prefix: '@@', basepath: '@file'} ))
 		.pipe(gulp.dest(path.buildProd.html))
 		.pipe(size({ title: 'html size =' }))
 });
 // --------JS----------
-gulp.task('js:buildProd', function () {
+gulp.task('buildProd:js', function () {
     gulp.src(path.src.js)
         .pipe(include()).on('error', console.error) 
-        .pipe(babel( {presets: ['es2015']}) ).on('error', function(err) {
+        .pipe(babel( {presets: ['env']}) ).on('error', function(err) {
             notify({ title: 'js:build task error!' }).write(err.message);
             this.emit('end');
         })
@@ -198,8 +196,8 @@ gulp.task('js:buildProd', function () {
 });
 
 // --------CSS----------
-gulp.task('css:buildProd', function () {
-	gulp.src(path.src.styles) 
+gulp.task('buildProd:css', function () {
+	gulp.src([path.src.scss, path.src.css])
 		.pipe(sass().on('error', sass.logError))
 		.pipe(postcss(postcssConfig))
 		.pipe(cssnano({zindex: false}))
@@ -209,7 +207,7 @@ gulp.task('css:buildProd', function () {
         .pipe(size({ title: 'styles size =' })) 
 });
 // ---------Images----------
-gulp.task('image:buildProd', function () {
+gulp.task('buildProd:image', function () {
     gulp.src(path.src.img) 
         .pipe(imagemin({
             progressive: true,
@@ -221,7 +219,7 @@ gulp.task('image:buildProd', function () {
         .pipe(size({ title: 'images size =' }))  
 });
 // ---------Fonts--------
-gulp.task('fonts:buildProd', function() {
+gulp.task('buildProd:fonts', function() {
     gulp.src(path.src.fonts)
         .pipe(gulp.dest(path.buildProd.fonts))
         .pipe(size({ title: 'fonts size =' })) 
@@ -237,26 +235,26 @@ gulp.task('clean:production', function() {
 });
 
 // -----Dev-----
-gulp.task('buildDev', gulp.series('clean:build', gulp.parallel(
-	'html:build','js:build','css:build','fonts:build','image:build'
+gulp.task('build:Dev', gulp.series('clean:build', gulp.parallel(
+	'build:html','build:js','build:css','build:fonts','build:image'
 	)));
 
 // -----Prod-----
-gulp.task('buildProd', gulp.series('clean:production', gulp.parallel(
-	'html:buildProd','js:buildProd','css:buildProd','fonts:buildProd','image:buildProd'
+gulp.task('build:Prod', gulp.series('clean:production', gulp.parallel(
+	'buildProd:html','buildProd:js','buildProd:css','buildProd:fonts','buildProd:image'
 	)));
 
 // =========Watch===========
 gulp.task('watch', function() {
-    watch( path.watch.html, gulp.series('html:build') );
-    watch( path.watch.styles, gulp.series('css:build') );
-    watch( path.watch.js, gulp.series('js:build') );
-    watch( path.watch.img, gulp.series('image:build') );
-    watch( path.watch.fonts, gulp.series('fonts:build') );
+    gulp.watch( path.watch.html, gulp.series('build:html') );
+    gulp.watch( path.watch.styles, gulp.series('build:css') );
+    gulp.watch( path.watch.js, gulp.series('build:js') );
+    gulp.watch( path.watch.img, gulp.series('build:image') );
+    gulp.watch( path.watch.fonts, gulp.series('build:fonts') );
 });
 
 // =============DEVELOPMENT=============
-gulp.task('dev', gulp.series('buildDev', gulp.parallel('watch', 'serverDev') ));
+gulp.task('dev', gulp.series('build:Dev', gulp.parallel('watch', 'serverDev') ));
 
 
 // gulp.task('watch', gulp.series('clean:dist', gulp.parallel('templates:all', 'styles', 'scripts:all', 'vendor:css', 'vendor:js', 'assets'), function() {

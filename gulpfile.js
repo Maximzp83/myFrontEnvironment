@@ -37,7 +37,6 @@ size 				  	= require('gulp-size');
 // ===========OPTIONS==============
 var serverDevConfig = {
 	server: { baseDir: 'build' },
-
 	tunnel: false,
 	ghostMode: false,
 	online: false,
@@ -49,12 +48,12 @@ var serverDevConfig = {
 // ----------
 var serverProdConfig = {
     server: { baseDir: "production" },
-    tunnel: true,  //you can set URL name here
+    tunnel: 'tunnel',  //you can set URL name here 
     ghostMode: false,
     online: true,
 	open:  "tunnel",
     host: 'localhost',
-    logPrefix: "FrontendPROD",
+    // logPrefix: "FrontendPROD",
     reloadDelay: 500
 };
 // --------------
@@ -75,7 +74,7 @@ var path = {
     },
     src: { //patch for source files
         html: 'src/*.html', 
-        js: 'src/js/main.js',
+        js: 'src/js/index.js',
         scss: 'src/styles/main.scss',
         css: 'src/styles/*.css',
         img: 'src/img/**/*.*',
@@ -176,14 +175,14 @@ gulp.task('build:fonts', function() {
 // =========PROD Builds========
 // --------HTML----------
 gulp.task('buildProd:html', function () {
-	gulp.src(path.src.html) 
+	return gulp.src(path.src.html) 
 		.pipe(HTMLInclude( {prefix: '@@', basepath: '@file'} ))
 		.pipe(gulp.dest(path.buildProd.html))
 		.pipe(size({ title: 'html size =' }))
 });
 // --------JS----------
 gulp.task('buildProd:js', function () {
-    gulp.src(path.src.js)
+    return gulp.src(path.src.js)
         .pipe(include()).on('error', console.error) 
         .pipe(babel( {presets: ['env']}) ).on('error', function(err) {
             notify({ title: 'js:build task error!' }).write(err.message);
@@ -197,7 +196,7 @@ gulp.task('buildProd:js', function () {
 
 // --------CSS----------
 gulp.task('buildProd:css', function () {
-	gulp.src([path.src.scss, path.src.css])
+	return gulp.src([path.src.scss, path.src.css])
 		.pipe(sass().on('error', sass.logError))
 		.pipe(postcss(postcssConfig))
 		.pipe(cssnano({zindex: false}))
@@ -208,7 +207,7 @@ gulp.task('buildProd:css', function () {
 });
 // ---------Images----------
 gulp.task('buildProd:image', function () {
-    gulp.src(path.src.img) 
+    return gulp.src(path.src.img) 
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false, cleanupIDs: true}],
@@ -220,7 +219,7 @@ gulp.task('buildProd:image', function () {
 });
 // ---------Fonts--------
 gulp.task('buildProd:fonts', function() {
-    gulp.src(path.src.fonts)
+    return gulp.src(path.src.fonts)
         .pipe(gulp.dest(path.buildProd.fonts))
         .pipe(size({ title: 'fonts size =' })) 
 });
@@ -231,7 +230,7 @@ gulp.task('clean:build', function() {
     return del(path.cleanBuild);
 });
 gulp.task('clean:production', function() {
-    return del(patch.cleanProduction);
+    return del(path.cleanProduction);
 });
 
 // -----Dev-----
@@ -246,15 +245,18 @@ gulp.task('build:Prod', gulp.series('clean:production', gulp.parallel(
 
 // =========Watch===========
 gulp.task('watch', function() {
-    gulp.watch( path.watch.html, gulp.series('build:html') );
-    gulp.watch( path.watch.styles, gulp.series('build:css') );
-    gulp.watch( path.watch.js, gulp.series('build:js') );
-    gulp.watch( path.watch.img, gulp.series('build:image') );
-    gulp.watch( path.watch.fonts, gulp.series('build:fonts') );
+    gulp.watch( path.watch.html, gulp.series('build:html', 'reload') );
+    gulp.watch( path.watch.styles, gulp.series('build:css', 'reload') );
+    gulp.watch( path.watch.js, gulp.series('build:js', 'reload') );
+    gulp.watch( path.watch.img, gulp.series('build:image', 'reload') );
+    gulp.watch( path.watch.fonts, gulp.series('build:fonts', 'reload') );
 });
 
 // =============DEVELOPMENT=============
 gulp.task('dev', gulp.series('build:Dev', gulp.parallel('watch', 'serverDev') ));
+
+// =============PRODUCTION=============
+gulp.task('prod', gulp.series('build:Prod', 'serverProd') );
 
 
 // gulp.task('watch', gulp.series('clean:dist', gulp.parallel('templates:all', 'styles', 'scripts:all', 'vendor:css', 'vendor:js', 'assets'), function() {

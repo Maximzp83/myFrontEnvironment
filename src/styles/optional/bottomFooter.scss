@@ -1,0 +1,18 @@
+html, body {
+	min-height: 100%;
+}
+
+div.mainWrapper {
+	height: inherit;
+}
+div.contentWrapper {
+	height: inherit;
+	display: flex;
+	flex-direction: column;
+}
+div.content {
+	flex: 1 1 auto;
+}
+footer.mainFooter {
+	flex: 0 0 auto;
+}

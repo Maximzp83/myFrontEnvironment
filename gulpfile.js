@@ -13,7 +13,8 @@ mediaPacker		    	= require('css-mqpacker'), // Gather all media queries togethe
 sass 					= require('gulp-sass'),
 sourcemaps		    	= require('gulp-sourcemaps'), //Deep analysis for file direction
 postcss			      	= require('gulp-postcss'), // Sass sytnax in css
-postcssFlexbugsFixes 	= require('postcss-flexbugs-fixes'),
+// postcssFlexbugsFixes 	= require('postcss-flexbugs-fixes'),
+postcssFocus            = require('postcss-focus'),
 
 //JS
 babel	 		    	= require('gulp-babel'), // Convert ES6 syntax into ES5
@@ -43,7 +44,7 @@ var serverDevConfig = {
 	open: false,
 	host: 'localhost',
 	logPrefix: "FrontendDEV",
-	reloadDelay: 500
+	reloadDelay: 300
 };
 // ----------
 var serverProdConfig = {
@@ -53,7 +54,7 @@ var serverProdConfig = {
     online: true,
 	open:  "tunnel",
     host: 'localhost',
-    // logPrefix: "FrontendPROD",
+    logPrefix: "FrontendPROD",
     reloadDelay: 500
 };
 // --------------
@@ -90,17 +91,19 @@ var path = {
     cleanProduction: 'production',
     cleanBuild: 'build'
 };
-// ----------------
+
+// --------PostCSS Config--------
 var postcssConfig = [
     autoPrefixer(),
-    postcssFlexbugsFixes(),
-    mediaPacker()
+    // postcssFlexbugsFixes(),
+    mediaPacker(),
+    postcssFocus()
 ];
 
 // =========== Main ============
 
 gulp.task('test', function(done) {
-	console.log('gulp test ok');
+	console.log('==========GULP TEST OK!==========');
 	done();
 });
 
@@ -185,7 +188,7 @@ gulp.task('buildProd:js', function () {
     return gulp.src(path.src.js)
         .pipe(include()).on('error', console.error) 
         .pipe(babel( {presets: ['env']}) ).on('error', function(err) {
-            notify({ title: 'js:build task error!' }).write(err.message);
+            notify({ title: 'js:buildProd task error!' }).write(err.message);
             this.emit('end');
         })
         .pipe(uglify())
@@ -201,7 +204,6 @@ gulp.task('buildProd:css', function () {
 		.pipe(postcss(postcssConfig))
 		.pipe(cssnano({zindex: false}))
 		.pipe(rename({ suffix: '.min' }))
-		.pipe(sourcemaps.write())
         .pipe(gulp.dest(path.buildProd.css))
         .pipe(size({ title: 'styles size =' })) 
 });
@@ -258,17 +260,3 @@ gulp.task('dev', gulp.series('build:Dev', gulp.parallel('watch', 'serverDev') ))
 // =============PRODUCTION=============
 gulp.task('prod', gulp.series('build:Prod', 'serverProd') );
 
-
-// gulp.task('watch', gulp.series('clean:dist', gulp.parallel('templates:all', 'styles', 'scripts:all', 'vendor:css', 'vendor:js', 'assets'), function() {
-//     gulp.watch(['src/html/template/*.pug','src/html/include/**/*.pug'], gulp.series('templates:all', 'reload'));
-//     gulp.watch(['src/html/*.pug'], gulp.series('templates:single', 'reload'));
-//     gulp.watch('src/styles/**/*.*', gulp.series('styles', 'reload'));
-//     gulp.watch(['src/js/*.*', 'src/js/pages/**/*.*'], gulp.series('scripts:single', 'reload'));
-//     gulp.watch(['src/js/widgets/**/*.*', 'src/js/chunks/**/*.*'], gulp.series('scripts:all', 'reload'));
-//     gulp.watch(['src/assets/**/*.*', '!src/assets/img/**/*.*'], gulp.series('assets', 'reload'));
-//     gulp.watch('src/assets/img/**/*.*', gulp.series('images', 'reload'));
-//     gulp.watch('src/vendor/**/*.css', gulp.series('vendor:css', 'reload'));
-//     gulp.watch('src/vendor/**/*.js', gulp.series('vendor:js', 'reload'));
-// }));
-
-// gulp.task('dev', gulp.parallel('watch', 'browser-sync'));

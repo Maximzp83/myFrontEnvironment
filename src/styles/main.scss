@@ -1,13 +1,15 @@
 @import "optional/customReset";
 @import "optional/bottomFooter"; //set page height to 100% and moves mainFooter to bottom.
 
+/* ----Variables--- */
+@import "variables";
+
 // @import "fonts";
 
 // -----Frames--------
 @import "frames/frames_main.scss";
 
 // ----Common-----
-@import "variables";
 @import "app/common/common.scss";
 
 //------Partials-----

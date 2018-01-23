@@ -1,17 +1,55 @@
-/*Variables for color*/
-$primaryColor: #db3535;  //indigo red
-$secondaryColor: #202020; // black
-$tertiaryColor: #8f8f8f;	//dark grey
-$fourthColor: #e7e7e7;   // light grey
+// ======Main Options=======
+/* -----Color------- */
+$primaryColor: #E32013;  
+$secondaryColor: #FFD04A; 
+$tertiaryColor: #E8E8E8;	
+$fourthColor: #252829; 
 
 $black: #000;
 $white: #fff;
-$gray: #ced0ce;
 
-// ----Componets Color-----
-$headerColor: $fourthColor;
+
+/* -----Fonts-----*/
+$pageFontSize: 14px;
+$mainFont: "Arial";
+$mainFontColor: #1B1E1F;
+$secondaryFontColor: $white;
+// $descriptionTextColor: #8D8E8F;
+
+/* ======Components Options======= */
+/* ------Color---------- */
+$mainBackgroundColor: $tertiaryColor;
+
+$headerColor: $primaryColor;
+$headerFontColor: $secondaryFontColor;
+
 $footerColor: $fourthColor;
+$footerFontColor: $secondaryFontColor;
+
+$mobileMenuColor: $primaryColor;
+
+/* ------Fonts----------*/
+$h1FontSize: 40px;
+$h2FontSize: 24px;
+$h3FontSize: 20px;
+
+/* ------Sizes----------*/
+// $headerHeight: 
 
 
-/* Variables for fonts*/
-$pageFontSize: 16px;
+/* ------Margins/Paddings------ */
+
+// ---Optional (page-grid)-----
+$sectionMarginTopMobile: 30px;
+$sectionMarginTopLaptop: 35px;
+$sectionMarginTopDesktop: 40px;
+
+$articleMarginMobile: 10px;
+$articleMarginLaptop: 16px;
+$articleMarginDesktop: 16px;
+
+
+
+
+
+

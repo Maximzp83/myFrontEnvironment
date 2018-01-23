@@ -1,4 +1,18 @@
-
 body {
 	font-size: $pageFontSize;
+	font-family: $mainFont;
 }
+
+b { font-weight: bold; }
+
+h1 { font-size: $h1FontSize; }
+h2 { font-size: $h2FontSize; }
+h3 { font-size: $h3FontSize; }
+
+
+
+
+
+/* ======Imported Modules===== */
+// @import "logic_blocks_common";
+

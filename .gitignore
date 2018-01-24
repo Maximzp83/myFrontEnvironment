@@ -5,6 +5,7 @@ node_modules/
 Thumbs.db
 ehthumbs.db
 build/
+production/
 # Folder config file
 Desktop.ini
 #yarn.lock

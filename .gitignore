@@ -5,9 +5,11 @@ node_modules/
 Thumbs.db
 ehthumbs.db
 build/
+production/
 # Folder config file
 Desktop.ini
-#yarn.lock
+yarn.lock
+package-lock.json
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/

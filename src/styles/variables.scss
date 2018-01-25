@@ -21,12 +21,17 @@ $secondaryFontColor: $white;
 $mainBackgroundColor: $tertiaryColor;
 
 $headerColor: $primaryColor;
-$headerFontColor: $secondaryFontColor;
+$headerFontColor: $white;
 
 $footerColor: $fourthColor;
 $footerFontColor: $secondaryFontColor;
 
 $mobileMenuColor: $primaryColor;
+
+$formElementsBorderColor: $secondaryColor;
+$formElementsFocusBorderColor: $primaryColor;
+
+$linksColor: $fourthColor;
 
 /* ------Fonts----------*/
 $h1FontSize: 40px;
@@ -34,12 +39,17 @@ $h2FontSize: 24px;
 $h3FontSize: 20px;
 
 /* ------Sizes----------*/
-// $headerHeight: 
+// $headerHeight:
+$pageMaxWidth: 1920px;
+
+$formElementsHeight: 40px; 
 
 
 /* ------Margins/Paddings------ */
 
 // ---Optional (page-grid)-----
+$containerWidth: 1815px;
+
 $sectionMarginTopMobile: 30px;
 $sectionMarginTopLaptop: 35px;
 $sectionMarginTopDesktop: 40px;
@@ -48,6 +58,12 @@ $articleMarginMobile: 10px;
 $articleMarginLaptop: 16px;
 $articleMarginDesktop: 16px;
 
+// ---Optional (collapse menu)-----
+$collapseBefore: 992px;  // page width when menu should collapse
+
+/* ------Z-index-------- */
+$zMobileMenu: 100;
+$zMobileMenuButton: $zMobileMenu;
 
 
 

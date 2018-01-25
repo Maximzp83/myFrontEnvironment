@@ -1,6 +1,7 @@
 body {
 	font-size: $pageFontSize;
 	font-family: $mainFont;
+	position: relative;
 }
 
 b { font-weight: bold; }
@@ -9,10 +10,104 @@ h1 { font-size: $h1FontSize; }
 h2 { font-size: $h2FontSize; }
 h3 { font-size: $h3FontSize; }
 
+.capitalize { text-transform: capitalize; }
+.relative {position: relative;}
+.title {font-weight: bold;}
+
+.mainWrapper {
+	max-width: $pageMaxWidth;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+.pageBackgroundWrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: -50;
+	background-color: $mainBackgroundColor;
+}
+
+.inlineImg {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50%;
+}
 
 
+// =========Buttons, inputs, links======
+
+button {
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+button:active,
+button:focus {
+	outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+	border: 1px solid $formElementsFocusBorderColor;
+	outline: none;
+	// border-style: solid;
+	// border-radius: 0;
+}
+input,
+textarea,
+select {
+	border: 1px solid $formElementsBorderColor;
+	box-sizing: border-box;
+	// font-size: 16px;
+	padding: 1px 12px;
+	width: 100%;
+	// border-radius: 3px;
+}
+textarea {
+	padding: 10px 12px;
+}
+
+input,
+textarea,
+button,
+button>i,
+select,
+a {
+	// cursor: pointer;
+	font-size: inherit;
+	transition: all ease 0.4s;
+}
+
+input {
+	height: $formElementsHeight;
+}
+
+
+button:after,
+button:before,
+a:after,
+a:before {
+	transition: all ease 0.4s;
+}
+
+a {
+	text-decoration: none;
+	color: $fourthColor;
+}
 
 
 /* ======Imported Modules===== */
 // @import "logic_blocks_common";
 
+/* ======Media Queries===== */
+
+@media (min-width: 768px) {
+	.mobile {
+		display: none;
+	}
+}

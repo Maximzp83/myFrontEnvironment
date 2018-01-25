@@ -250,7 +250,7 @@ gulp.task('watch', function() {
     gulp.watch( path.watch.html, gulp.series('build:html', 'reload') );
     gulp.watch( path.watch.styles, gulp.series('build:css', 'reload') );
     gulp.watch( path.watch.js, gulp.series('build:js', 'reload') );
-    gulp.watch( path.watch.img, gulp.series('build:image', 'reload') );
+    gulp.watch( path.watch.img, gulp.series('clean:build', 'build:image', 'reload') );
     gulp.watch( path.watch.fonts, gulp.series('build:fonts', 'reload') );
 });
 

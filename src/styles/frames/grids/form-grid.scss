@@ -1,0 +1,24 @@
+.standard-form {
+	label,
+	.label {
+		display: inline-block;
+		margin-bottom: 5px;
+		font-size: 1rem;
+	}
+
+	.form-title {
+		margin-bottom: 15px;
+	}
+
+	.formRow {
+
+	}
+
+	.formRow + .formRow {
+		margin-top: 15px;
+	}
+
+	.submitButtonWrapper {
+		margin-top: 15px;
+	}
+}

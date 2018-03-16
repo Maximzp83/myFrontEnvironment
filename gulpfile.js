@@ -42,6 +42,7 @@ var serverDevConfig = {
 	ghostMode: false,
 	online: false,
 	open: false,
+    notify: false,
 	host: 'localhost',
 	logPrefix: "FrontendDEV",
 	reloadDelay: 300
@@ -76,6 +77,7 @@ var path = {
     src: { //patch for source files
         html: 'src/*.html', 
         js: 'src/js/index.js',
+        libsJs: 'src/js/libs/*.js',
         scss: 'src/styles/main.scss',
         css: 'src/styles/*.css',
         img: 'src/img/**/*.*',
@@ -89,7 +91,8 @@ var path = {
         fonts: 'src/fonts/**/*.*'
     },
     cleanProduction: 'production',
-    cleanBuild: 'build'
+    cleanBuild: 'build',
+    cleanImg: 'build/img'
 };
 
 // --------PostCSS Config--------
@@ -135,7 +138,7 @@ gulp.task('build:html', function (done) {
 
 // --------JS----------
 gulp.task('build:js', function () {
-    return gulp.src(path.src.js)
+    return gulp.src([path.src.js, path.src.libsJs])
         .pipe(include()).on('error', console.error) 
         .pipe(sourcemaps.init()) 
         .pipe(babel( {presets: ['env']}) ).on('error', function(err) {
@@ -153,6 +156,7 @@ gulp.task('build:css', function () {
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss(postcssConfig))
+        .pipe(cssnano({zindex: false}))
         .pipe(rename({ suffix: '.min' }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.css))
@@ -185,7 +189,7 @@ gulp.task('buildProd:html', function () {
 });
 // --------JS----------
 gulp.task('buildProd:js', function () {
-    return gulp.src(path.src.js)
+    return gulp.src([path.src.js, path.src.libsJs])
         .pipe(include()).on('error', console.error) 
         .pipe(babel( {presets: ['env']}) ).on('error', function(err) {
             notify({ title: 'js:buildProd task error!' }).write(err.message);
@@ -234,14 +238,17 @@ gulp.task('clean:build', function() {
 gulp.task('clean:production', function() {
     return del(path.cleanProduction);
 });
+gulp.task('clean:img', function() {
+    return del(path.cleanImg);
+});
 
 // -----Dev-----
-gulp.task('build:Dev', gulp.series('clean:build', gulp.parallel(
+gulp.task('build:dev', gulp.series('clean:build', gulp.parallel(
 	'build:html','build:js','build:css','build:fonts','build:image'
 	)));
 
 // -----Prod-----
-gulp.task('build:Prod', gulp.series('clean:production', gulp.parallel(
+gulp.task('build:prod', gulp.series('clean:production', gulp.parallel(
 	'buildProd:html','buildProd:js','buildProd:css','buildProd:fonts','buildProd:image'
 	)));
 
@@ -250,13 +257,13 @@ gulp.task('watch', function() {
     gulp.watch( path.watch.html, gulp.series('build:html', 'reload') );
     gulp.watch( path.watch.styles, gulp.series('build:css', 'reload') );
     gulp.watch( path.watch.js, gulp.series('build:js', 'reload') );
-    gulp.watch( path.watch.img, gulp.series('clean:build', 'build:image', 'reload') );
+    gulp.watch( path.watch.img, gulp.series('clean:img', 'build:image', 'reload') );
     gulp.watch( path.watch.fonts, gulp.series('build:fonts', 'reload') );
 });
 
 // =============DEVELOPMENT=============
-gulp.task('dev', gulp.series('build:Dev', gulp.parallel('watch', 'serverDev') ));
+gulp.task('dev', gulp.series('build:dev', gulp.parallel('watch', 'serverDev') ));
 
 // =============PRODUCTION=============
-gulp.task('prod', gulp.series('build:Prod', 'serverProd') );
+gulp.task('prod', gulp.series('build:prod', 'serverProd') );
 

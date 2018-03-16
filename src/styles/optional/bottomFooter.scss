@@ -3,12 +3,10 @@ div.mainWrapper {
 	flex-direction: column;
 	min-height: 100vh;
 
-	& > div.page {
+	& > div.contentWrapper {
 		flex: 1 1 auto;
 	}
 	& > footer.mainFooter {
 		flex: 0 0 auto;
 	}
 }
-
-

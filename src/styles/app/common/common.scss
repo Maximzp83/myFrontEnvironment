@@ -3,21 +3,64 @@ body {
 	font-family: $mainFont;
 	position: relative;
 }
+body.pageOverlayOpen {
+	overflow: hidden;
+}
 
 b { font-weight: bold; }
 
-h1 { font-size: $h1FontSize; }
-h2 { font-size: $h2FontSize; }
-h3 { font-size: $h3FontSize; }
+// h1 { font-size: $h1FontSize; }
+// h2 { font-size: $h2FontSize; }
+// h3 { font-size: $h3FontSize; }
+
+img {width: 100%;}
+a > img {display: table;}
+
+
+ul.disc {
+	list-style-type: disc;
+}
+ol.decimal {
+	list-style-type: decimal;
+	padding-left: 15px;
+}
 
 .capitalize { text-transform: capitalize; }
+.uppercase { text-transform: uppercase; }
+
 .relative {position: relative;}
-.title {font-weight: bold;}
+.title {font-weight: 700;}
+.semi-title {font-weight: 500; }
+.sub-title {
+	margin-top: 10px;
+	font-size: 0.6em;
+}
+.page-title {
+	font-family: $titleFont;
+	color: $primaryColor;
+	font-size: $titleFontSize;
+	text-align: center;
+	margin-bottom: 15px;
+}
+.section-title {
+	font-family: $titleFont;
+	color: $primaryColor;
+	font-size: $sectionTitleFontSize;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
 
 .mainWrapper {
 	max-width: $pageMaxWidth;
 	margin: 0 auto;
 	box-sizing: border-box;
+}
+.contentWrapper {
+	overflow: hidden;
+}
+.page {
+	background: $mainBackgroundColor;
 }
 
 .pageBackgroundWrapper {
@@ -30,10 +73,29 @@ h3 { font-size: $h3FontSize; }
 	background-color: $mainBackgroundColor;
 }
 
+.wrapperBlock > div,
+.wrapperBlock > input,
+.wrapperBlock > form,
+.wrapperBlock > button,
+.wrapperBlock > table {
+  width: 100%;
+}
+
 .inlineImg {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 50%;
+}
+
+// ---------Position--------
+.relative {position: relative;}
+.absolute {position: absolute;}
+.absolute.center {
+	top: 50%; left: 50%;
+	transform: translate(-50%, -50%);
+}
+.absolute.stretch {
+	top: 0; bottom: 0; left: 0; right: 0;
 }
 
 
@@ -43,6 +105,7 @@ button {
 	border: none;
 	background: none;
 	cursor: pointer;
+	padding: 0;
 }
 
 button:active,
@@ -83,31 +146,38 @@ a {
 	transition: all ease 0.4s;
 }
 
-input {
+input, select {
 	height: $formElementsHeight;
 }
+input[type="checkbox"] {
+	width: 15px;
+	height: 15px;
+	margin: 0;
 
-
-button:after,
-button:before,
-a:after,
-a:before {
-	transition: all ease 0.4s;
+	& + label {
+		margin-bottom: 0;
+		margin-left: 15px;
+		width: 90%;
+	}
 }
 
 a {
 	text-decoration: none;
-	color: $fourthColor;
+	color: $linksColor;
 }
 
+span.showButton {display: inline-block;}
 
-/* ======Imported Modules===== */
-// @import "logic_blocks_common";
+
 
 /* ======Media Queries===== */
 
-@media (min-width: 768px) {
-	.mobile {
-		display: none;
+@media (min-width: 991px) {
+	.page-title {
+		font-size: $titleFontSizeLaptop;
+	}
+	.section-title {
+		font-size: $sectionTitleFontSizeLaptop;
 	}
 }
+

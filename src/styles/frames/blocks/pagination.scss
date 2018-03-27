@@ -1,0 +1,76 @@
+// -----Pagination-----
+.pagination {
+	margin: 30px 0;
+	text-align: left;
+	width: 100%;
+
+	nav > ul > li.pagination-start,
+	nav > ul > li.pagination-end {
+		display: none;
+	}
+
+	nav > ul > li {
+		display: inline-block;
+		text-align: center;
+		vertical-align: middle;
+
+
+		& > a,
+		& > span,
+		& > a > span {
+			width: 40px;
+			height: 40px;
+			display: block;
+			// font-family: $titlesFont;
+			// font-weight: bold;
+			font-size: 18px;
+			line-height: 40px;
+			transition: all .5s ease;
+		}
+
+		& > a:hover {
+			background-color: $primaryColor;
+			color: $white;
+		}
+
+		&.active > span {
+			background-color: $primaryColor;
+			color: $white;
+		}
+
+		& > span {
+			background-color: $secondaryColor;
+			color: $white;
+			cursor: auto;
+		}
+	}
+
+	nav > ul > li.pagination-next > span,
+	nav > ul > li.pagination-prev > span,
+	nav > ul > li.pagination-next > a,
+	nav > ul > li.pagination-prev > a,
+	nav > ul > li > a > span {
+		// width: auto;
+		// padding: 0 10px;
+		background-color: $secondaryColor;
+		background-repeat: no-repeat;
+		background-position: 50%;
+	}
+	nav > ul > li.pagination-next > span:hover,
+	nav > ul > li.pagination-prev > span:hover,
+	nav > ul > li.pagination-next > a:hover,
+	nav > ul > li.pagination-prev > a:hover,
+	nav > ul > li > a > span:hover {
+		opacity: 0.7;
+	}
+	nav > ul > li.pagination-prev > span,
+	nav > ul > li.pagination-prev > a,
+	nav > ul > li:first-child > a > span {
+		background-image: url('../img/icons/chevron-left.png');
+	}
+	nav > ul > li.pagination-next > span,
+	nav > ul > li.pagination-next > a,
+	nav > ul > li:last-child > a > span {
+		background-image: url('../img/icons/chevron-right.png');
+	}
+}

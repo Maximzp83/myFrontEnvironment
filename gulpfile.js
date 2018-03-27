@@ -4,6 +4,7 @@ browserSync    		= require('browser-sync').create(), // Local server
 
 //HTML
 // pug			 		  = require('gulp-pug'), // Pug(Jade) into HTML
+htmlhint            = require("gulp-htmlhint"),
 
 //CSS
 autoPrefixer			= require('autoprefixer'), // Autoprefixer for older browsers
@@ -25,7 +26,7 @@ uglify				    = require('gulp-uglify'), // JavaScript minification
 // cache        			= require('gulp-cached'), // Cache edited files
 // concat        			= require('gulp-concat'), // Get different files joined
 del          			= require('del'), // Remove files
-gulpIf 					= require('gulp-if'),
+// gulpIf 					= require('gulp-if'),
 HTMLInclude 			= require('gulp-file-include'),
 include 		 		= require('gulp-include'), // Include other files into another
 imagemin     		  	= require('gulp-imagemin'), // Minify images
@@ -79,7 +80,7 @@ var path = {
         js: 'src/js/index.js',
         libsJs: 'src/js/libs/*.js',
         scss: 'src/styles/main.scss',
-        css: 'src/styles/*.css',
+        css: 'src/styles/libs/*.css',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
     },
@@ -132,6 +133,9 @@ gulp.task('reload', function(done) {
 gulp.task('build:html', function (done) {
 	gulp.src(path.src.html) 
 	.pipe(HTMLInclude( {prefix: '@@', basepath: '@file'} ))
+    // .pipe(htmlhint('.htmlhintrc'))
+    .pipe(htmlhint())
+    .pipe(htmlhint.reporter())
 	.pipe(gulp.dest(path.build.html));
 	done(); 
 });
@@ -145,6 +149,7 @@ gulp.task('build:js', function () {
             notify({ title: 'build:js task error!' }).write(err.message);
             this.emit('end');
         })
+        .pipe(uglify())
         .pipe(rename({ suffix: '.min' }))
         .pipe(sourcemaps.write()) 
         .pipe(gulp.dest(path.build.js)) 
@@ -184,6 +189,8 @@ gulp.task('build:fonts', function() {
 gulp.task('buildProd:html', function () {
 	return gulp.src(path.src.html) 
 		.pipe(HTMLInclude( {prefix: '@@', basepath: '@file'} ))
+        // .pipe(htmlhint())
+        // .pipe(htmlhint.reporter())
 		.pipe(gulp.dest(path.buildProd.html))
 		.pipe(size({ title: 'html size =' }))
 });

@@ -1,24 +1,61 @@
 .standard-form {
 	label,
 	.label {
-		display: inline-block;
+		display: block;
 		margin-bottom: 5px;
-		font-size: 1rem;
+		font-size: $labelFontSize;
 	}
 
 	.form-title {
+		font-family: $secondaryFont;
+		font-size: $formTitleFontSize;
 		margin-bottom: 15px;
 	}
+
 
 	.formRow {
 
 	}
 
+	.checkbox {
+		input {
+			width: 15px;
+			height: auto;
+
+			display: inline-block;
+		}
+		label {
+			display: inline-block;
+			border: none;
+			margin-bottom: 0;
+			margin-left: 5px;
+		}
+	}
+
+	.formBlock {box-sizing: border-box;}
+
+	.formBlock + .formBlock {margin-top: 15px;}
+
 	.formRow + .formRow {
-		margin-top: 15px;
+		margin-top: 25px;
 	}
 
 	.submitButtonWrapper {
 		margin-top: 15px;
+	}
+
+
+
+
+	@media (min-width: 767px) {
+
+	}
+
+	@media (min-width: 991px) {
+		.formBlock + .formBlock {
+			margin-top: 0;
+			padding-left: 15px;
+		}
+
 	}
 }

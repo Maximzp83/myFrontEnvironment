@@ -5,7 +5,7 @@ node_modules/
 Thumbs.db
 ehthumbs.db
 build/
-production/
+#production/
 # Folder config file
 Desktop.ini
 yarn.lock

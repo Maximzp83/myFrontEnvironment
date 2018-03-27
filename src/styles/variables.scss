@@ -13,8 +13,17 @@ $white: #fff;
 $pageFontSize: 14px;
 $mainFont: "Arial";
 $mainFontColor: #1B1E1F;
+$secondaryFont: "Arial";
+
+$titleFont: $mainFont;
+$titleFontSize: 2rem;
+$titleFontSizeLaptop: 2rem;
+$sectionTitleFontSize: 1.5rem;
+$sectionTitleFontSizeLaptop: 1.5rem;
+
 $secondaryFontColor: $white;
-// $descriptionTextColor: #8D8E8F;
+$descriptionTextColor: #8D8E8F;
+
 
 /* ======Components Options======= */
 /* ------Color---------- */
@@ -33,10 +42,17 @@ $formElementsFocusBorderColor: $primaryColor;
 
 $linksColor: $fourthColor;
 
+$darkOverlayColor: rgb(0,0,0);
+
+
 /* ------Fonts----------*/
 $h1FontSize: 40px;
 $h2FontSize: 24px;
 $h3FontSize: 20px;
+
+$descriptionLineHeight: 1.35rem;
+$descriptionFontSize: 0.9rem;
+
 
 /* ------Sizes----------*/
 // $headerHeight:
@@ -48,23 +64,40 @@ $formElementsHeight: 40px;
 /* ------Margins/Paddings------ */
 
 // ---Optional (page-grid)-----
+$containerPadding: 15px;
+$containerPaddingDesktop: 15px;
+
 $containerWidth: 1815px;
+$containerWidthTablet: 570px;
+$containerWidthLaptop: 760px;
+$containerWidthDesktop: 905px;
 
 $sectionMarginTopMobile: 30px;
+$sectionMarginTopTablet: 30px;
 $sectionMarginTopLaptop: 35px;
 $sectionMarginTopDesktop: 40px;
 
 $articleMarginMobile: 10px;
+$articleMarginTablet: 10px;
 $articleMarginLaptop: 16px;
 $articleMarginDesktop: 16px;
 
 // ---Optional (collapse menu)-----
-$collapseBefore: 992px;  // page width when menu should collapse
+$collapseBefore: 991px;  // page width when menu should collapse
+
+// ---Optional (form-grid)-----
+$formTitleFontSize: 1.25rem;
+$labelFontSize: 13px;
 
 /* ------Z-index-------- */
-$zMobileMenu: 100;
+$zMobileMenu: 1000;
 $zMobileMenuButton: $zMobileMenu;
 
+$pageOverlayZIndex: $zMobileMenu - 50;
+$darkOverlayZIndex: $pageOverlayZIndex - 10;
+
+$zPopup: $zMobileMenu + 200;
+$zPopupDarkOverlay: $zPopup - 50;
 
 
 

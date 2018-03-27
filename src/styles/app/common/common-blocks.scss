@@ -1,0 +1,237 @@
+.standardButton {
+	line-height: 45px;
+	background-color: $primaryColor;
+	color: $secondaryFontColor;
+	padding: 0 15px; 
+	font-weight: bold;
+	font-size: 15px;
+	box-sizing: border-box;
+	text-align: center;
+	display: inline-block;
+
+	&:hover {
+		opacity: 0.7;
+	}
+}
+
+
+// ----------Hidden Blocks----------
+
+.darkOverlay,
+.gradientOverlay {
+	background-color: $darkOverlayColor;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.6;
+	z-index: $darkOverlayZIndex;
+}
+
+.hiddenContent.height {
+	height: 0;
+	overflow: hidden;
+	transition: height 0.4s ease-out;
+}
+.hiddenContent.right {
+	// width: 0;
+	// overflow: hidden;
+	left: 100%;
+	transition: left 0.4s ease-out;
+}
+
+.hiddenContent.scale {
+	transform: scaleY(0);
+	transform-origin: 0 0;
+	transition: transform 0.5s , opacity 0.3s ease-in-out;
+}
+.hideScale {
+	transform: scale(0)!important;
+	opacity: 0!important;
+}
+.showScale {
+	transform: scale(1)!important;
+	opacity: 1!important;
+}
+
+.hide {display: none !important;}
+.show {display: block !important;}
+
+.toggleBlock {
+	display: none;
+
+	&.active {
+		display: block;
+	}
+}
+
+// --------------------------
+.main-video-wrapper {
+	margin-top: 25px;
+	position: relative;
+	padding-bottom: 108%;
+	height: 0;
+	overflow: hidden;
+
+	& > iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+	}
+}
+
+// --------------------------
+.description {
+
+	.description-title {
+		// font-family: $defaultFont;
+		font-size: 1.5rem;
+		line-height: 1.7rem;
+		margin-bottom: 5px;
+	}
+
+	p {
+		font-size: $descriptionFontSize;
+		line-height: $descriptionLineHeight;
+		// text-align: center;
+		margin: 10px 0;
+	}
+
+	ul {
+		margin-top: 15px;
+		& > li {
+			margin-top: 10px;
+			line-height: $descriptionLineHeight;
+			// text-align: center;
+			font-size: $descriptionFontSize;
+		}
+	}
+}
+
+// --------------------
+.sectionBlock.flex,
+article.flex {
+	flex-direction: column;
+	
+	header {}
+
+	.content {
+		flex-grow: 1;
+	}
+
+	footer {
+		margin-top: auto;
+	}
+}
+
+
+// ----------Popup---------
+// -------Modal--------
+
+.pageOverlay {
+	box-sizing: border-box;
+	opacity: 0;
+	background-color: $darkOverlayColor;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	width: 100%;
+	z-index: -10;
+	visibility: hidden;
+	transition: opacity 0.3s ease-out;
+}
+
+.pageOverlay.openPopup {
+	opacity: 1;
+	visibility: visible;
+	z-index: $zPopupDarkOverlay;
+}
+
+.pageOverlay.openMenu {
+	opacity: 0.4;
+	visibility: visible;
+	z-index: $pageOverlayZIndex;
+}
+
+.popup {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  background-color: $white;
+  z-index: -1;
+  width: 100%;
+  max-width: 385px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.8s;
+  border-radius: 4px;
+  border: 1px solid #dadada;
+  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.4);
+
+  a:hover { text-decoration: underline;}
+
+  p {margin: 10px 0;}
+
+  .modalHeader {
+  	background-color: #f6f6f6;
+  	.modal-title {
+  		color: $primaryColor;
+  		font-size: 16px;
+  		font-weight: 700;
+  		text-align: center;
+  		padding: 0 10px;
+  		line-height: 40px;
+  	}
+  }
+
+  button.popupCloseButton {
+  	z-index: 1;
+  	position: absolute;
+  	border: none;
+  	width: 40px;
+  	padding: 10px;
+  	cursor: pointer;
+  	right: 0;
+  	top: 0;
+
+  	i:before {
+  		transition: color ease 0.4s;
+  	}
+
+  	&:hover > i:before {
+  		color: red;
+  	}
+  }
+  
+
+  .popUpContainer {
+    position: relative;
+    width: 100%;
+    padding: 10px 25px;
+    box-sizing: border-box;
+  }
+}
+
+
+// .popupogin.open {
+//   visibility: visible;
+//   opacity: 1;
+//   z-index: $zPopup;
+// }
+
+
+// ======Media=========
+@media (min-width: 767px) {
+	.main-video-wrapper {
+		padding-bottom: 45%;
+	}
+
+	// ---------
+
+}

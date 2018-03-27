@@ -1,0 +1,16 @@
+// -------TreeAngle------
+.triangle {
+  position: relative;
+}
+
+.triangle::before {
+  content: ''; 
+  position: absolute; 
+  left: 35px;
+  border: 10px solid transparent; 
+}
+.triangle-top::before {
+  bottom: 100%;
+  border-bottom: 10px solid;
+  border-bottom-color: #000;
+}

@@ -7,7 +7,7 @@ function toggleOverlay(overlayType, overlayElement) {
   switch (overlayType) {
     case "popup":
     if (!overlayElement.classList.contains('openPopup')) {
-      overlayElement.style.zIndex = 300;
+      overlayElement.style.zIndex = 1150;
       overlayElement.style.visibility = 'visible';
       overlayElement.classList.add('openPopup');
       overlayElement.classList.add('open');
@@ -32,10 +32,10 @@ function toggleOverlay(overlayType, overlayElement) {
 // ==============Popup Open/Close Module ==============
 var PopupModule = (function () {
 
-	const successPopupBlock = document.getElementById('popupSuccess');
+  const modals = document.getElenentsByClassName('popup');
 
 	function openPopup(popupBlock) {
-		popupBlock.style.zIndex = 400;
+		popupBlock.style.zIndex = 1200;
 		popupBlock.style.visibility = 'visible';
 		popupBlock.classList.add("open");
 	}
@@ -53,44 +53,45 @@ var PopupModule = (function () {
 
   // -------Events--------  
 
-  $('footer.mainFooter' ).on('click', 'form button[type="submit"]', function(e) {
-  	e.preventDefault();
-
-  	if (successPopupBlock) {
-  		toggleOverlay("popup", pageOverlay);
-  		openPopup(successPopupBlock);
-  	}
-  });
-
-
   $('body').on('click', '#pageOverlay', function() {
-  	toggleOverlay("popup", pageOverlay);
-  	closePopup( $(this).closest('.popup') );
+  	toggleOverlay("popup", this);
+
+    if (modals) {
+      for (var i = 0; i < modals.length; i++) {
+        modals[i].classList.contains('open') ? closePopup(modals[i]) : null;
+      }       
+    }
   });
    
   $('body').on('click', 'button.popupCloseButton', function() {
-  	// successPopupBlock.classList.contains('open') ? closePopup(successPopupBlock) : null;
 
-  // 	toggleOverlay("popup", this);
+    closePopup( $(this).closest('.popup') );
+
+    toggleOverlay("popup", pageOverlay);
   });
 
   window.onkeydown = function (e) {
   	if (e.keyCode === 27 ) {
-      successPopupBlock.classList.contains('open') ? closePopup(successPopupBlock) : null;
-      popupShopBlock.classList.contains('open') ? closePopup(popupShopBlock) : null;
+      if (pageOverlay) {
+        pageOverlay.classList.contains('open') ? toggleOverlay("popup", pageOverlay) : null;
+      }
 
-      pageOverlay.classList.contains('openPopup') ? toggleOverlay("popup", pageOverlay) : null;
+      if (modals) {
+        for (var i = 0; i < modals.length; i++) {
+          modals[i].classList.contains('open') ? closePopup(modals[i]) : null;
+        }       
+      }
     }
-	};
+  };
 
   // ------------
 
 	return {
 		openPopup: openPopup,
 		closePopup: closePopup,
-		toggleOverlay: toggleOverlay,
+		// toggleOverlay: toggleOverlay,
     
-		successBlock: successPopupBlock
+		// popupOrder: popupOrder,
 	}
 
 })();

@@ -14,7 +14,8 @@
 
 
 	.formRow {
-
+		input + input {margin-top: 25px;}
+		select + select {margin-top: 25px;}
 	}
 
 	.checkbox {

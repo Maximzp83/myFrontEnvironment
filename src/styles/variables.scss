@@ -46,19 +46,26 @@ $darkOverlayColor: rgb(0,0,0);
 
 
 /* ------Fonts----------*/
-$h1FontSize: 40px;
-$h2FontSize: 24px;
-$h3FontSize: 20px;
+// $h1FontSize: 40px;
+// $h2FontSize: 24px;
+// $h3FontSize: 20px;
+$smaller: 12px;
+$normal: 14px;
+$larger: 16px;
+$large: 18px;
+$big: 24px;
 
 $descriptionLineHeight: 1.35rem;
 $descriptionFontSize: 0.9rem;
 
 
 /* ------Sizes----------*/
-// $headerHeight:
+$headerHeight: 85px;
 $pageMaxWidth: 1920px;
 
 $formElementsHeight: 40px; 
+
+$standardButtonHeight: 40px;
 
 
 /* ------Margins/Paddings------ */
@@ -72,8 +79,8 @@ $containerWidthTablet: 570px;
 $containerWidthLaptop: 760px;
 $containerWidthDesktop: 905px;
 
-$sectionMarginTopMobile: 30px;
-$sectionMarginTopTablet: 30px;
+$sectionMarginTopMobile: 20px;
+$sectionMarginTopTablet: 25px;
 $sectionMarginTopLaptop: 35px;
 $sectionMarginTopDesktop: 40px;
 

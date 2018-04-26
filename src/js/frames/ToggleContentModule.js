@@ -78,8 +78,8 @@ var ToggleContentModule  = (function() {
 				switch (buttonData.menuType || 'default') {
 					case 'scale': scale( button, targetBlocks[i], action ); break;
 					case 'drop-down': dropDown( button, targetBlocks[i], action ); break;
-					case 'show-hide': showHide( button, targetBlocks[i], action ); break;
 					case 'drop-left': slideLeft( button, targetBlocks[i], action ); break;
+					case 'show-hide': showHide( button, targetBlocks[i], action ); break;
 
 					default: console.error('no correct "data-menu-type" attribute is set to the button element in HTML!');
 				}						
@@ -150,6 +150,7 @@ var ToggleContentModule  = (function() {
 		let thisTarget = buttonData.group ? buttonElement.parentElement.getElementsByClassName(buttonData.group) : null;
 		return thisTarget;
 	}
+
 	function targetsForReverseActionButtons(buttonElement, buttonData) {
 		let targetButtons = [];
 
@@ -198,24 +199,6 @@ var ToggleContentModule  = (function() {
 		// console.timeEnd('click toggle working time');
 			
 	});
-
-
-
-	// ----------
-	// return {
-	// 	openPopup: function (popupBlock) {
-	// 		openPopup(popupBlock);
-	// 	},
-	// 	closePopup: function (popupBlock) {
-	// 		closePopup(popupBlock);
-	// 	},
-	// 	getHotelChoseButtons: getHotelChoseButtons(),
-
-	// 	hotelPopup: hotelPopupsBlock,
-	// 	universalPopup: universalPopupBlock,
-	// 	darkLayer: darkLayer,
-
-	// }
 
 
 })();

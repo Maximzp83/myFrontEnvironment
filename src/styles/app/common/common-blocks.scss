@@ -262,12 +262,13 @@ article.flex {
   }
 }
 
-
-// .popupogin.open {
-//   visibility: visible;
-//   opacity: 1;
-//   z-index: $zPopup;
-// }
+.popup.animate {
+  opacity: 1;
+}
+.popup.open {
+  z-index: $zPopup;
+  visibility: visible;
+}
 
 
 // ======Media=========

@@ -1,6 +1,6 @@
 let AccordionModule  = (function() {
-	// let parent
-
+	console.log('AccordionModule ok');
+	
 	function toggleContent(options, button, targetBlock, allTargetBlocks) {
 		let subMenuParent = button ? findParentWrapper(button, 'menuWrapper') : null;
 		let targetHeight = targetBlock ? targetBlock.firstElementChild.offsetHeight : null;

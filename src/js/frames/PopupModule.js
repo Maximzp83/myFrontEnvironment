@@ -41,7 +41,7 @@ var PopupModule = (function () {
     }
   }
 
-  if (modals) {
+  if (modals.length) {
     for (let i = 0; i < modals.length; i++) {
       modals[i].addEventListener("transitionend", function(event) {
         event.stopPropagation();

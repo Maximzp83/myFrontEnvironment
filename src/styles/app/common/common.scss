@@ -121,6 +121,15 @@ ol.decimal {
 
 // =========Buttons, inputs, links======
 
+.closeIcon {
+	display: none;
+}
+
+button.active {
+	.openIcon {display: none;}
+	.closeIcon {display: block;}
+}
+
 button {
 	border: none;
 	background: none;

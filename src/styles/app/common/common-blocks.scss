@@ -78,15 +78,30 @@
 .hiddenContent.scale {
 	transform: scaleY(0);
 	transform-origin: 0 0;
-	transition: transform 0.5s , opacity 0.3s ease-in-out;
+	transition: transform 0.5s;
+
+	&.opacityAnimate > div {
+		opacity: 0;
+		transition: opacity 0.3s ease-in-out 0.3s;
+	}
+
+	&.opacityAnimate:not(.showScale) {
+		transition-delay: 0.2s;
+		& > div {
+			transition-delay: 0s;
+		}
+	}
 }
+
 .hideScale {
 	transform: scale(0)!important;
-	opacity: 0!important;
 }
 .showScale {
 	transform: scale(1)!important;
-	opacity: 1!important;
+	
+	&.opacityAnimate > div {
+		opacity: 1!important;
+	}
 }
 
 .hide {display: none !important;}

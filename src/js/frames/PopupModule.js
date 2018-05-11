@@ -24,6 +24,26 @@ function toggleOverlay(overlayType, overlayElement) {
       }, 300)
     }
     break;
+
+    case "menu":
+    if (!overlayElement.classList.contains('openMenu')) {
+      overlayElement.style.zIndex = 900;
+      overlayElement.style.visibility = 'visible';
+      overlayElement.classList.add('openMenu');
+      overlayElement.classList.add('open');
+      document.body.classList.add("pageOverlayOpen");
+    } else {
+      overlayElement.classList.remove('openMenu');
+      overlayElement.classList.remove('open');
+      document.body.classList.remove("pageOverlayOpen");
+      setTimeout(function () {
+        if (!overlayElement.classList.contains('openMenu')) {
+          overlayElement.style.zIndex = -10;
+          overlayElement.style.visibility = 'hidden';
+        }
+      }, 300)
+    }
+    break;
   }
 }
 
@@ -39,7 +59,7 @@ var PopupModule = (function () {
     }
   }
 
-  if (modals) {
+  if (modals.length) {
     for (let i = 0; i < modals.length; i++) {
       modals[i].addEventListener("transitionend", function(event) {
         event.stopPropagation();

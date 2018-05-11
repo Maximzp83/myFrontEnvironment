@@ -1,7 +1,5 @@
 console.log('PopupModule ok');
 
-const pageOverlay = document.getElementById('pageOverlay');
-
 function toggleOverlay(overlayType, overlayElement) {
 
   switch (overlayType) {
@@ -23,7 +21,7 @@ function toggleOverlay(overlayType, overlayElement) {
           overlayElement.style.zIndex = -10;
           overlayElement.style.visibility = 'hidden';
         }
-      }, 500)
+      }, 300)
     }
     break;
   }

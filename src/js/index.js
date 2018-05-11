@@ -1,29 +1,40 @@
 let status = "JS - OK!, window load";
 console.log(status);
 
+// var PopupModule;
+// var AccordionModule;
+
+var popupOrder,
+		modals, pageOverlay;
+
+$(document).ready(function() {
+	popupOrder = document.getElementById('popupOrder');
+	
+	modals = document.getElementsByClassName('popup');
+	pageOverlay = document.getElementById('pageOverlay');
+
+});
+
+// =================Include Modules==============================
+
+// =include testModule.js
+
+// //=include frames/toggleButtonContent.js  //need for modules below
+// //=include frames/custom_Input_Type_number.js  
+
+// //=include frames/AccordionModule.js
+// //=include frames/ToggleContentModule.js
+// //=include frames/SwitchTabsModule.js
+// //=include frames/PopupModule.js
+// //=include frames/TextLimitModule.js
+
+// =============================================================
+
 
 window.onload = function() {
 	if ($('body')) {console.log('jQuery OK')}
 	console.log(test);
 
-	// =================Include Modules==============================
-
-	// =include testModule.js
-
-	// //=include frames/toggleButtonContent.js  //need for modules below
-  // //=include frames/custom_Input_Type_number.js  
-
-	// //=include frames/AccordionModule.js
-	// //=include frames/ToggleContentModule.js
-  // //=include frames/SwitchTabsModule.js
-  // //=include frames/PopupModule.js
-  // //=include frames/TextLimitModule.js
-
-
-
-	// =============================================================
-
-	const popupOrder = document.getElementById('popupOrder');
 
   // ---------Popups Block-------
 

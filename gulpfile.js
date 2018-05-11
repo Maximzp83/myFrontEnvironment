@@ -79,8 +79,10 @@ var path = {
         html: 'src/*.html', 
         js: 'src/js/index.js',
         libsJs: 'src/js/libs/*.js',
+        minifiedJs: 'src/js/libs/minified/*.min.js',
         scss: 'src/styles/main.scss',
         css: 'src/styles/libs/*.css',
+        minifiedCss: 'src/styles/libs/minified/*.min.css',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
     },
@@ -155,6 +157,11 @@ gulp.task('build:js', function () {
         .pipe(gulp.dest(path.build.js)) 
 });
 
+gulp.task('copy:js', function () {
+    return gulp.src([path.src.minifiedJs])
+        .pipe(gulp.dest(path.build.js)) 
+});
+
 // --------CSS----------
 gulp.task('build:css', function () {
     return gulp.src([path.src.scss, path.src.css]) 
@@ -165,6 +172,11 @@ gulp.task('build:css', function () {
         .pipe(rename({ suffix: '.min' }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.css))
+});
+
+gulp.task('copy:css', function () {
+    return gulp.src([path.src.minifiedCss])
+        .pipe(gulp.dest(path.build.css)) 
 });
 
 // --------Images----------
@@ -208,6 +220,11 @@ gulp.task('buildProd:js', function () {
         .pipe(size({ title: 'js size =' }))
 });
 
+gulp.task('copyProd:js', function () {
+    return gulp.src([path.src.minifiedJs])
+        .pipe(gulp.dest(path.buildProd.js)) 
+});
+
 // --------CSS----------
 gulp.task('buildProd:css', function () {
 	return gulp.src([path.src.scss, path.src.css])
@@ -217,6 +234,11 @@ gulp.task('buildProd:css', function () {
 		.pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(path.buildProd.css))
         .pipe(size({ title: 'styles size =' })) 
+});
+
+gulp.task('copyProd:css', function () {
+    return gulp.src([path.src.minifiedCss])
+        .pipe(gulp.dest(path.buildProd.css)) 
 });
 // ---------Images----------
 gulp.task('buildProd:image', function () {
@@ -251,13 +273,13 @@ gulp.task('clean:img', function() {
 
 // -----Dev-----
 gulp.task('build:dev', gulp.series('clean:build', gulp.parallel(
-	'build:html','build:js','build:css','build:fonts','build:image'
-	)));
+    'build:html','build:js','copy:js','build:css','copy:css','build:fonts','build:image'
+    )));
 
 // -----Prod-----
 gulp.task('build:prod', gulp.series('clean:production', gulp.parallel(
-	'buildProd:html','buildProd:js','buildProd:css','buildProd:fonts','buildProd:image'
-	)));
+    'buildProd:html','buildProd:js','copyProd:js','buildProd:css','copyProd:css','buildProd:fonts','buildProd:image'
+    )));
 
 // =========Watch===========
 gulp.task('watch', function() {

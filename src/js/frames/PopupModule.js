@@ -1,38 +1,51 @@
 console.log('PopupModule ok');
 
-function toggleOverlay(overlayType, overlayElement) {
+function showOverlay(overlayType, overlayElement) {
 
   switch (overlayType) {
     case "popup":
-    if (!overlayElement.classList.contains('openPopup')) {
-      overlayElement.style.zIndex = 1150;
-      overlayElement.style.visibility = 'visible';
-      overlayElement.classList.add('openPopup');
-      overlayElement.classList.add('open');
+      if (!overlayElement.classList.contains('openPopup')) {
+        overlayElement.style.zIndex = 1150;
+        overlayElement.style.visibility = 'visible';
+        overlayElement.classList.add('openPopup');
+        overlayElement.classList.add('open');
 
-      document.body.classList.add("pageOverlayOpen");
-    } else {
-      overlayElement.classList.remove('openPopup');
-      overlayElement.classList.remove('open');
+        document.body.classList.add("pageOverlayOpen");
+      } 
+    break;
 
-      document.body.classList.remove("pageOverlayOpen");
-      setTimeout(function () {
-        if (!overlayElement.classList.contains('openPopup')) {
-          overlayElement.style.zIndex = -10;
-          overlayElement.style.visibility = 'hidden';
-        }
-      }, 300)
-    }
+    case "menu":
+      if (!overlayElement.classList.contains('openMenu')) {
+        overlayElement.style.zIndex = 900;
+        overlayElement.style.visibility = 'visible';
+        overlayElement.classList.add('openMenu');
+        overlayElement.classList.add('open');
+        document.body.classList.add("pageOverlayOpen");
+      } 
+    break;
+  }
+}
+
+function hideOverlay(overlayType, overlayElement) {
+
+  switch (overlayType) {
+    case "popup":
+      if (overlayElement.classList.contains('openPopup')) {
+        overlayElement.classList.remove('openPopup');
+        overlayElement.classList.remove('open');
+
+        document.body.classList.remove("pageOverlayOpen");
+        setTimeout(function () {
+          if (!overlayElement.classList.contains('openPopup')) {
+            overlayElement.style.zIndex = -10;
+            overlayElement.style.visibility = 'hidden';
+          }
+        }, 300)
+      }
     break;
 
     case "menu":
     if (!overlayElement.classList.contains('openMenu')) {
-      overlayElement.style.zIndex = 900;
-      overlayElement.style.visibility = 'visible';
-      overlayElement.classList.add('openMenu');
-      overlayElement.classList.add('open');
-      document.body.classList.add("pageOverlayOpen");
-    } else {
       overlayElement.classList.remove('openMenu');
       overlayElement.classList.remove('open');
       document.body.classList.remove("pageOverlayOpen");
@@ -49,8 +62,6 @@ function toggleOverlay(overlayType, overlayElement) {
 
 // ==============Popup Open/Close Module ==============
 var PopupModule = (function () {
-
-  const modals = document.getElenentsByClassName('popup');
 
   function toggleShow(event, popupBlock) {
     // console.log('event,')
@@ -98,7 +109,7 @@ var PopupModule = (function () {
   // -------Events--------  
 
   $('body').on('click', '#pageOverlay', function() {
-  	toggleOverlay("popup", this);
+  	hideOverlay("popup", this);
 
     if (modals) {
       for (var i = 0; i < modals.length; i++) {
@@ -111,13 +122,13 @@ var PopupModule = (function () {
 
     closePopup( $(this).closest('.popup') );
 
-    toggleOverlay("popup", pageOverlay);
+    hideOverlay("popup", pageOverlay);
   });
 
   window.onkeydown = function (e) {
   	if (e.keyCode === 27 ) {
       if (pageOverlay) {
-        pageOverlay.classList.contains('open') ? toggleOverlay("popup", pageOverlay) : null;
+        pageOverlay.classList.contains('open') ? hideOverlay("popup", pageOverlay) : null;
       }
 
       if (modals) {
@@ -133,9 +144,8 @@ var PopupModule = (function () {
 	return {
 		openPopup: openPopup,
 		closePopup: closePopup,
-		// toggleOverlay: toggleOverlay,
-    
-		// popupOrder: popupOrder,
+    showOverlay: showOverlay,
+    hideOverlay: hideOverlay, 
 	}
 
 })();

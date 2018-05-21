@@ -7,16 +7,17 @@
 @import "fonts";
 
 // -----Frames--------
-@import "frames/frames_main.scss";
+@import "frames/frames_main";
 
 // ----Common-----
-@import "app/common/common.scss";
+@import "app/common/common";
 @import "app/common/common-blocks";
+@import "app/common/common-content";
 
 
 //------Partials-----
-@import "app/partials/header.scss";
-@import "app/partials/footer.scss";
+@import "app/partials/header";
+@import "app/partials/footer";
 
 //-----App-----
-@import "app/homePage.scss";
+@import "app/homePage";

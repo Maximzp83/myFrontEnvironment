@@ -138,7 +138,8 @@ button {
 }
 
 button:active,
-button:focus {
+button:focus,
+a:focus {
 	outline: none;
 }
 

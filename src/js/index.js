@@ -13,22 +13,23 @@ $(document).ready(function() {
 	modals = document.getElementsByClassName('popup');
 	pageOverlay = document.getElementById('pageOverlay');
 
+
+	// =================Include Modules==============================
+
+	// =include testModule.js
+
+	// //=include frames/toggleButtonContent.js  //need for modules below
+	// //=include frames/custom_Input_Type_number.js  
+
+	// //=include frames/AccordionModule.js
+	// //=include frames/ToggleContentModule.js
+	// //=include frames/SwitchTabsModule.js
+	// //=include frames/PopupModule.js
+	// //=include frames/TextLimitModule.js
+
+	// =============================================================
+
 });
-
-// =================Include Modules==============================
-
-// =include testModule.js
-
-// //=include frames/toggleButtonContent.js  //need for modules below
-// //=include frames/custom_Input_Type_number.js  
-
-// //=include frames/AccordionModule.js
-// //=include frames/ToggleContentModule.js
-// //=include frames/SwitchTabsModule.js
-// //=include frames/PopupModule.js
-// //=include frames/TextLimitModule.js
-
-// =============================================================
 
 
 window.onload = function() {
@@ -41,7 +42,7 @@ window.onload = function() {
 	$('body').on('click', '.orderButton', function() {
   	// e.preventDefault();
   	if (popupOrder) {
-  		toggleOverlay("popup", pageOverlay);
+  		PopupModule.showOverlay("popup", pageOverlay);
   		PopupModule.openPopup(popupOrder);
   	}
   });
@@ -69,7 +70,19 @@ window.onload = function() {
   // ---------Text Limit-------
 	// let textBlocks = document.querySelectorAll('.selector');
 	// textBlocks.length ? TextLimitModule.sliceText(textBlocks, 180) : null;
+	
+
+	// ----------Scroll-to Section---------------
+	
+	// $('body').on('click', 'article.story-item', function() {
+		
+	// 	$('html, body').animate({
+	// 		scrollTop: $("#" + $(this).attr('data-story-id') ).offset().top
+	// 	}, 500);
+	// })
 }
+
+
 	
 
 // ===========Initializations=============

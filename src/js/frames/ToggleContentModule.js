@@ -90,6 +90,7 @@ var ToggleContentModule  = (function() {
 		switch (buttonData.buttonType || 'default') {
 			case 'checkbox':
 			case 'button':
+			case 'menuButton':
 					toggle(targets, 'show');
 					toggle(targetsReverse, 'hideReverse');					
 			break;
@@ -192,8 +193,18 @@ var ToggleContentModule  = (function() {
 
 			// --------Actions/Events--------
 
-			toggleButtonContent(this);
-			toggleContent(this, targetContentData);
+			if (buttonData.buttonType === "menuButton") {
+				toggleButtonContent(this);
+				this.classList.contains('active') ? 
+				PopupModule.showOverlay("menu", pageOverlay) : 
+				PopupModule.hideOverlay("menu", pageOverlay);
+
+				toggleContent(this, targetContentData);
+
+			} else {
+				toggleButtonContent(this);
+				toggleContent(this, targetContentData);				
+			}
 
 		}
 		// console.timeEnd('click toggle working time');

@@ -79,15 +79,23 @@ var PopupModule = (function () {
     }
   }
 
-	function openPopup(popupBlock) {
-		let popup = popupBlock.length ? popupBlock[0] : popupBlock;
+	function openPopup(popupBlock, overlayBlock) {
+    let overlay = overlayBlock || pageOverlay;
+
+    let popup = popupBlock.length ? popupBlock[0] : popupBlock;
         popup.classList.add("open");
         popup.classList.add("animate");
+
+    showOverlay("popup", overlay);
 	}
 
-  function closePopup(popupBlock) {
+  function closePopup(popupBlock, overlayBlock) {
+    let overlay = overlayBlock || pageOverlay;
+
     let popup = popupBlock.length ? popupBlock[0] : popupBlock;
+    
     popup.classList.remove("animate");
+    hideOverlay("popup", overlay);
   }
 
 	// function closePopup(popupBlock) {

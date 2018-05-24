@@ -21,6 +21,14 @@ article, .sectionBlock {
   margin: 0 auto;
 }
 
+.mclearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
 .flex {
   display: flex;
   &.spaceBetween {justify-content: space-between;}
@@ -49,7 +57,8 @@ article, .sectionBlock {
   margin-right: -( $articleMarginMobile / 2 );
 
   & > div,
-  & > article {
+  & > article,
+  & > aside, {
     box-sizing: border-box;
     padding: $articleMarginMobile / 2;
   }

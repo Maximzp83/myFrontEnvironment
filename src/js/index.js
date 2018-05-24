@@ -42,7 +42,6 @@ window.onload = function() {
 	$('body').on('click', '.orderButton', function() {
   	// e.preventDefault();
   	if (popupOrder) {
-  		PopupModule.showOverlay("popup", pageOverlay);
   		PopupModule.openPopup(popupOrder);
   	}
   });

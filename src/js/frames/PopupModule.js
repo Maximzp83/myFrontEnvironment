@@ -61,7 +61,7 @@ function hideOverlay(overlayType, overlayElement) {
 }
 
 // ==============Popup Open/Close Module ==============
-var PopupModule = (function () {
+PopupModule = (function () {
 
   function toggleShow(event, popupBlock) {
     // console.log('event,')

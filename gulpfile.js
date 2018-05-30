@@ -27,8 +27,7 @@ uglify				    = require('gulp-uglify'), // JavaScript minification
 // concat        			= require('gulp-concat'), // Get different files joined
 del          			= require('del'), // Remove files
 // gulpIf 					= require('gulp-if'),
-HTMLInclude 			= require('gulp-file-include'),
-include 		 		= require('gulp-include'), // Include other files into another
+fileInclude 			= require('gulp-file-include'),
 imagemin     		  	= require('gulp-imagemin'), // Minify images
 notify				    = require('gulp-notify'), // Tell about error during task processing
 pngquant    			= require('imagemin-pngquant'), // Imagemin plugin for png
@@ -134,7 +133,7 @@ gulp.task('reload', function(done) {
 // --------HTML----------
 gulp.task('build:html', function (done) {
 	gulp.src(path.src.html) 
-	.pipe(HTMLInclude( {prefix: '@@', basepath: '@file'} ))
+	.pipe(fileInclude( {prefix: '@@', basepath: '@file'} ))
     // .pipe(htmlhint('.htmlhintrc'))
     .pipe(htmlhint())
     .pipe(htmlhint.reporter())
@@ -145,7 +144,8 @@ gulp.task('build:html', function (done) {
 // --------JS----------
 gulp.task('build:js', function () {
     return gulp.src([path.src.js, path.src.libsJs])
-        .pipe(include()).on('error', console.error) 
+        // .pipe(include()).on('error', console.error) 
+        .pipe(fileInclude({prefix: '@@', basepath: '@file'})).on('error', console.error) 
         .pipe(sourcemaps.init()) 
         .pipe(babel( {presets: ['env']}) ).on('error', function(err) {
             notify({ title: 'build:js task error!' }).write(err.message);
@@ -200,7 +200,7 @@ gulp.task('build:fonts', function() {
 // --------HTML----------
 gulp.task('buildProd:html', function () {
 	return gulp.src(path.src.html) 
-		.pipe(HTMLInclude( {prefix: '@@', basepath: '@file'} ))
+		.pipe(fileInclude( {prefix: '@@', basepath: '@file'} ))
         // .pipe(htmlhint())
         // .pipe(htmlhint.reporter())
 		.pipe(gulp.dest(path.buildProd.html))
@@ -209,7 +209,7 @@ gulp.task('buildProd:html', function () {
 // --------JS----------
 gulp.task('buildProd:js', function () {
     return gulp.src([path.src.js, path.src.libsJs])
-        .pipe(include()).on('error', console.error) 
+        .pipe(fileInclude({prefix: '@@', basepath: '@file'})).on('error', console.error) 
         .pipe(babel( {presets: ['env']}) ).on('error', function(err) {
             notify({ title: 'js:buildProd task error!' }).write(err.message);
             this.emit('end');

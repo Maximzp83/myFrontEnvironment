@@ -1,2 +1,1 @@
-let test = 'include js - OK';
-
+test = 'include js - OK';

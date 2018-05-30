@@ -147,10 +147,7 @@ gulp.task('build:js', function () {
         // .pipe(include()).on('error', console.error) 
         .pipe(fileInclude({prefix: '@@', basepath: '@file'})).on('error', console.error) 
         .pipe(sourcemaps.init()) 
-        .pipe(babel( {presets: ['env']}) ).on('error', function(err) {
-            notify({ title: 'build:js task error!' }).write(err.message);
-            this.emit('end');
-        })
+        .pipe(babel())
         .pipe(uglify())
         .pipe(rename({ suffix: '.min' }))
         .pipe(sourcemaps.write()) 
@@ -210,7 +207,7 @@ gulp.task('buildProd:html', function () {
 gulp.task('buildProd:js', function () {
     return gulp.src([path.src.js, path.src.libsJs])
         .pipe(fileInclude({prefix: '@@', basepath: '@file'})).on('error', console.error) 
-        .pipe(babel( {presets: ['env']}) ).on('error', function(err) {
+        .pipe(babel() ).on('error', function(err) {
             notify({ title: 'js:buildProd task error!' }).write(err.message);
             this.emit('end');
         })

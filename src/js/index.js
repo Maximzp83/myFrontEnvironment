@@ -3,6 +3,7 @@ console.log(status);
 
 var PopupModule;
 var AccordionModule;
+var AnimateBorder;
 
 var popupOrder,
 		modals, pageOverlay;
@@ -29,6 +30,8 @@ $(document).ready(function() {
 	/*@@include('frames/SwitchTabsModule.js')*/
 	/*@@include('frames/PopupModule.js')*/
 	/*@@include('frames/TextLimitModule.js')*/
+	/*@@include('frames/AnimateBorderModule.js')*/
+
 
 	// =============================================================
 
@@ -86,6 +89,12 @@ $(document).ready(function() {
 
 	// ===========Initializations=============
 
-
+	// AnimateBorder(document.querySelectorAll('.animated-border-block svg'), {
+	// 	borderWidth: 3,
+	// 	shadedSection: 100,
+	// 	transparentSection: 25,
+	// 	reverse: false,
+	// 	radius: true 
+	// })
 
 });

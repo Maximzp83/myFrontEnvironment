@@ -4,23 +4,23 @@ function showOverlay(overlayType, overlayElement) {
 
   switch (overlayType) {
     case "popup":
-      if (!overlayElement.classList.contains('openPopup')) {
+      if (!overlayElement.classList.contains('js_openPopup')) {
         overlayElement.style.zIndex = 1150;
         overlayElement.style.visibility = 'visible';
-        overlayElement.classList.add('openPopup');
-        overlayElement.classList.add('open');
+        overlayElement.classList.add('js_openPopup');
+        overlayElement.classList.add('js_open');
 
-        document.body.classList.add("pageOverlayOpen");
+        document.body.classList.add("js_pageOverlayOpen");
       } 
     break;
 
     case "menu":
-      if (!overlayElement.classList.contains('openMenu')) {
+      if (!overlayElement.classList.contains('js_openMenu')) {
         overlayElement.style.zIndex = 900;
         overlayElement.style.visibility = 'visible';
-        overlayElement.classList.add('openMenu');
-        overlayElement.classList.add('open');
-        document.body.classList.add("pageOverlayOpen");
+        overlayElement.classList.add('js_openMenu');
+        overlayElement.classList.add('js_open');
+        document.body.classList.add("js_pageOverlayOpen");
       } 
     break;
   }
@@ -30,13 +30,13 @@ function hideOverlay(overlayType, overlayElement) {
 
   switch (overlayType) {
     case "popup":
-      if (overlayElement.classList.contains('openPopup')) {
-        overlayElement.classList.remove('openPopup');
-        overlayElement.classList.remove('open');
+      if (overlayElement.classList.contains('js_openPopup')) {
+        overlayElement.classList.remove('js_openPopup');
+        overlayElement.classList.remove('js_open');
 
-        document.body.classList.remove("pageOverlayOpen");
+        document.body.classList.remove("js_pageOverlayOpen");
         setTimeout(function () {
-          if (!overlayElement.classList.contains('openPopup')) {
+          if (!overlayElement.classList.contains('js_openPopup')) {
             overlayElement.style.zIndex = -10;
             overlayElement.style.visibility = 'hidden';
           }
@@ -45,12 +45,12 @@ function hideOverlay(overlayType, overlayElement) {
     break;
 
     case "menu":
-    if (!overlayElement.classList.contains('openMenu')) {
-      overlayElement.classList.remove('openMenu');
-      overlayElement.classList.remove('open');
-      document.body.classList.remove("pageOverlayOpen");
+    if (!overlayElement.classList.contains('js_openMenu')) {
+      overlayElement.classList.remove('js_openMenu');
+      overlayElement.classList.remove('js_open');
+      document.body.classList.remove("js_pageOverlayOpen");
       setTimeout(function () {
-        if (!overlayElement.classList.contains('openMenu')) {
+        if (!overlayElement.classList.contains('js_openMenu')) {
           overlayElement.style.zIndex = -10;
           overlayElement.style.visibility = 'hidden';
         }
@@ -66,7 +66,7 @@ PopupModule = (function () {
   function toggleShow(event, popupBlock) {
     // console.log('event,')
     if ( event.propertyName == 'opacity' ) {
-      popupBlock.classList.contains('animate') ? null : popupBlock.classList.remove('open');
+      popupBlock.classList.contains('animate') ? null : popupBlock.classList.remove('js_open');
     }
   }
 
@@ -83,8 +83,8 @@ PopupModule = (function () {
     let overlay = overlayBlock || pageOverlay;
 
     let popup = popupBlock.length ? popupBlock[0] : popupBlock;
-        popup.classList.add("open");
-        popup.classList.add("animate");
+        popup.classList.add("js_open");
+        popup.classList.add("js_animate");
 
     showOverlay("popup", overlay);
 	}
@@ -94,7 +94,7 @@ PopupModule = (function () {
 
     let popup = popupBlock.length ? popupBlock[0] : popupBlock;
     
-    popup.classList.remove("animate");
+    popup.classList.remove("js_animate");
     hideOverlay("popup", overlay);
   }
 
@@ -111,7 +111,7 @@ PopupModule = (function () {
   //         }
   //         popup.removeEventListener("transitionend", hidePopup);
   //     }
-  //     popup.classList.remove("open");
+  //     popup.classList.remove("js_open");
   //   }
 
   // -------Events--------  
@@ -121,7 +121,7 @@ PopupModule = (function () {
 
     if (modals) {
       for (var i = 0; i < modals.length; i++) {
-        modals[i].classList.contains('open') ? closePopup(modals[i]) : null;
+        modals[i].classList.contains('js_open') ? closePopup(modals[i]) : null;
       }       
     }
   });
@@ -136,12 +136,12 @@ PopupModule = (function () {
   window.onkeydown = function (e) {
   	if (e.keyCode === 27 ) {
       if (pageOverlay) {
-        pageOverlay.classList.contains('open') ? hideOverlay("popup", pageOverlay) : null;
+        pageOverlay.classList.contains('js_open') ? hideOverlay("popup", pageOverlay) : null;
       }
 
       if (modals) {
         for (var i = 0; i < modals.length; i++) {
-          modals[i].classList.contains('open') ? closePopup(modals[i]) : null;
+          modals[i].classList.contains('js_open') ? closePopup(modals[i]) : null;
         }       
       }
     }

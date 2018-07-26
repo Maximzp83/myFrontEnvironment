@@ -42,11 +42,11 @@ AnimateBorder = function (animatedBlocks, optionsObj) {
 	function cycleOffset(event, animatedBlock, dashArraySumNumber) {
 	  if ( event.propertyName == 'stroke-dashoffset' ) {
 	  	// console.log('stroke-dashoffset')
-	  	animatedBlock.classList.add('resetTransition');
+	  	animatedBlock.classList.add('js_resetTransition');
 	  	animatedBlock.setAttribute('stroke-dashoffset', 0);
 	  	
 	  	setTimeout(function() {
-	  		animatedBlock.classList.remove('resetTransition');
+	  		animatedBlock.classList.remove('js_resetTransition');
 	  		animatedBlock.setAttribute('stroke-dashoffset', dashArraySumNumber)			
 	  	}, 10)
 	  }

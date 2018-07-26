@@ -16,6 +16,7 @@ sourcemaps		    	= require('gulp-sourcemaps'), //Deep analysis for file directio
 postcss			      	= require('gulp-postcss'), // Sass sytnax in css
 // postcssFlexbugsFixes 	= require('postcss-flexbugs-fixes'),
 postcssFocus            = require('postcss-focus'),
+purgecss                = require('gulp-purgecss'), //clean unused css
 
 //JS
 babel	 		    	= require('gulp-babel'), // Convert ES6 syntax into ES5
@@ -81,6 +82,7 @@ var path = {
         minifiedJs: 'src/js/libs/minified/*.min.js',
         scss: 'src/styles/main.scss',
         css: 'src/styles/libs/*.css',
+        purgingcss: 'src/styles/libs/for_purgecss/*.css',
         minifiedCss: 'src/styles/libs/minified/*.min.css',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
@@ -175,7 +177,6 @@ gulp.task('copy:css', function () {
     return gulp.src([path.src.minifiedCss])
         .pipe(gulp.dest(path.build.css)) 
 });
-
 // --------Images----------
 gulp.task('build:image', function () {
    return gulp.src(path.src.img) 
@@ -237,6 +238,19 @@ gulp.task('copyProd:css', function () {
     return gulp.src([path.src.minifiedCss])
         .pipe(gulp.dest(path.buildProd.css)) 
 });
+
+gulp.task('purgecss', () => {
+  return gulp.src(['production/css/main.min.css',path.src.purgingcss])
+       .pipe(
+            purgecss({
+                content: ['production/*.html'],
+                whitelistPatterns: [/\bjs_/, /active/]
+            })
+        )
+       .pipe(gulp.dest('production/css/'))
+       .pipe(size({ title: 'styles size after purge =' })) 
+
+})
 // ---------Images----------
 gulp.task('buildProd:image', function () {
     return gulp.src(path.src.img) 
@@ -274,8 +288,15 @@ gulp.task('build:dev', gulp.series('clean:build', gulp.parallel(
     )));
 
 // -----Prod-----
-gulp.task('build:prod', gulp.series('clean:production', gulp.parallel(
-    'buildProd:html','buildProd:js','copyProd:js','buildProd:css','copyProd:css','buildProd:fonts','buildProd:image'
+gulp.task('build:prod', gulp.series('clean:production', gulp.series(
+    'buildProd:html',
+    'buildProd:js',
+    'copyProd:js',
+    'buildProd:css',
+    'copyProd:css',
+    'purgecss',
+    'buildProd:fonts',
+    'buildProd:image'
     )));
 
 // =========Watch===========

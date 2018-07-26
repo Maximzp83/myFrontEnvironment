@@ -19,10 +19,10 @@ var ToggleContentModule  = (function() {
 		function scale(button, targetBlock, action) {
 			if (action === 'show' ) {
 				button.checked || button.classList.contains('active') ? 
-					targetBlock.classList.add('showScale') : targetBlock.classList.remove('showScale');
+					targetBlock.classList.add('js_showScale') : targetBlock.classList.remove('js_showScale');
 			} else {
 				button.checked || button.classList.contains('active') ? 
-				targetBlock.classList.add('hideScale') : targetBlock.classList.remove('hideScale');
+				targetBlock.classList.add('js_hideScale') : targetBlock.classList.remove('js_hideScale');
 			}
 		}
 
@@ -57,10 +57,10 @@ var ToggleContentModule  = (function() {
 		function showHide(button, targetBlock, action) {
 			if (action === 'show' ) {
 				button.checked || button.classList.contains('active') ? 
-					targetBlock.classList.add('show') : targetBlock.classList.remove('show');
+					targetBlock.classList.add('js_show') : targetBlock.classList.remove('js_show');
 			} else {
 				button.checked || button.classList.contains('active') ?
-					targetBlock.classList.add('hide') : targetBlock.classList.remove('hide');
+					targetBlock.classList.add('js_hide') : targetBlock.classList.remove('js_hide');
 			}	
 		}
 

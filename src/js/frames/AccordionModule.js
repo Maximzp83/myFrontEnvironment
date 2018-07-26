@@ -74,26 +74,26 @@ let AccordionModule  = (function() {
 	}
     
 	// -----Resize Event------
-	const mobileFilterMenuBlocks = document.querySelectorAll('#filterWrapper .filter-item .filter-content-wrapper');
+	// const mobileFilterMenuBlocks = document.querySelectorAll('#filterWrapper .filter-item .filter-content-wrapper');
 
-	let timer = null;
+	// let timer = null;
 
-	window.onresize = function () {
-		if (timer) {
-			clearTimeout(timer);
-		}
+	// window.onresize = function () {
+	// 	if (timer) {
+	// 		clearTimeout(timer);
+	// 	}
 
-		timer = setTimeout(function() {
-			timer = null;
+	// 	timer = setTimeout(function() {
+	// 		timer = null;
 
-     // =======Handlers=======
-      if (mobileFilterMenuBlocks) {
-      	if (document.documentElement.clientWidth > 991) {
-					toggleContent("resetDropDown", null, null, mobileFilterMenuBlocks);
-				}
-      }
-     }, 50);
-	};
+ //     // =======Handlers=======
+ //      if (mobileFilterMenuBlocks) {
+ //      	if (document.documentElement.clientWidth > 991) {
+	// 				toggleContent("resetDropDown", null, null, mobileFilterMenuBlocks);
+	// 			}
+ //      }
+ //     }, 50);
+	// };
 
 	
 // ------------

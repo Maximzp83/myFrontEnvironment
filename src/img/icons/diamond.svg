@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="73px" height="72px" viewBox="0 0 73 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>diamond</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="UI-Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="kapital_main" transform="translate(-525.000000, -2383.000000)" stroke="#AF926F">
+            <g id="Спец-возможности" transform="translate(310.000000, 2374.000000)">
+                <g id="spec_4">
+                    <g id="diamond" transform="translate(209.000000, 5.000000)">
+                        <polygon id="Path-2" transform="translate(43.500000, 42.500000) rotate(-368.000000) translate(-43.500000, -42.500000) " points="5 57.1077478 11.7949983 30.8979204 54.8912502 6 82 14.7716258 67.0392584 79"></polygon>
+                        <path d="M7.70703125,62.0429687 L77.6181641,9.95117187" id="Line-4" stroke-linecap="square"></path>
+                        <path d="M31.2628205,44.2627119 L71.7371795,74.7372881" id="Line-5" stroke-linecap="square"></path>
+                        <path d="M52.2702703,28.2611111 L71.7297297,74.7388889" id="Line-5" stroke-linecap="square"></path>
+                        <path d="M50.2857143,5.25555556 L52.3596191,28.6513672" id="Line-5" stroke-linecap="square"></path>
+                        <path d="M11.2625,35.25 L31.5288086,44.3911133" id="Line-5" stroke-linecap="square"></path>
+                        <path d="M30,20.4299316 L31.5102539,44.3898926" id="Line-5" stroke-linecap="square"></path>
+                        <path d="M30.2555556,20.25 L52.3842773,28.6462402" id="Line-5" stroke-linecap="square"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

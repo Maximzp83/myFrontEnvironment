@@ -1,7 +1,7 @@
 var SwitchTabsModule  = (function() {
 	console.log('SwitchTabsModule ok');
 
-		const tabsButtons = document.querySelectorAll('.tabsNav > .tab'),
+		const tabsButtons = document.querySelectorAll('.tabsNav .tab'),
 		tabsBlocksList = document.querySelectorAll('.toggleBlock');
 
 		function switchTabs(tabButton, tabsBlocks) {

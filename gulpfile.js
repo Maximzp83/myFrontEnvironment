@@ -1,52 +1,50 @@
 //MAIN
-const gulp        	= require('gulp'), //Gulp
-browserSync    		= require('browser-sync').create(), // Local server
+const gulp          = require('gulp'), //Gulp
+browserSync         = require('browser-sync').create(), // Local server
 
 //HTML
-// pug			 		  = require('gulp-pug'), // Pug(Jade) into HTML
+// pug                    = require('gulp-pug'), // Pug(Jade) into HTML
 htmlhint            = require("gulp-htmlhint"),
 
 //CSS
-autoPrefixer			= require('autoprefixer'), // Autoprefixer for older browsers
-cssnano      		  	= require('gulp-cssnano'), // CSS minification
-// cssnext			  	= require('postcss-cssnext'), // CSS4 syntax
-mediaPacker		    	= require('css-mqpacker'), // Gather all media queries together
-sass 					= require('gulp-sass'),
-sourcemaps		    	= require('gulp-sourcemaps'), //Deep analysis for file direction
-postcss			      	= require('gulp-postcss'), // Sass sytnax in css
-// postcssFlexbugsFixes 	= require('postcss-flexbugs-fixes'),
+autoPrefixer            = require('autoprefixer'), // Autoprefixer for older browsers
+cssnano                 = require('gulp-cssnano'), // CSS minification
+// cssnext              = require('postcss-cssnext'), // CSS4 syntax
+mediaPacker             = require('css-mqpacker'), // Gather all media queries together
+sass                    = require('gulp-sass'),
+sourcemaps              = require('gulp-sourcemaps'), //Deep analysis for file direction
+postcss                 = require('gulp-postcss'), // Sass sytnax in css
+// postcssFlexbugsFixes     = require('postcss-flexbugs-fixes'),
 postcssFocus            = require('postcss-focus'),
 purgecss                = require('gulp-purgecss'), //clean unused css
 
 //JS
-babel	 		    	= require('gulp-babel'), // Convert ES6 syntax into ES5
-uglify				    = require('gulp-uglify'), // JavaScript minification
+babel                   = require('gulp-babel'), // Convert ES6 syntax into ES5
+uglify                  = require('gulp-uglify'), // JavaScript minification
 
 //OTHER
-// absolutePath		    = require('path'), // Create file's path
-// cache        			= require('gulp-cached'), // Cache edited files
-// concat        			= require('gulp-concat'), // Get different files joined
-del          			= require('del'), // Remove files
-// gulpIf 					= require('gulp-if'),
-fileInclude 			= require('gulp-file-include'),
-imagemin     		  	= require('gulp-imagemin'), // Minify images
-notify				    = require('gulp-notify'), // Tell about error during task processing
-pngquant    			= require('imagemin-pngquant'), // Imagemin plugin for png
-rename       		  	= require('gulp-rename'), // Rename files
-size 				  	= require('gulp-size');
+// absolutePath         = require('path'), // Create file's path
+del                     = require('del'), // Remove files
+// gulpIf                   = require('gulp-if'),
+fileInclude             = require('gulp-file-include'),
+imagemin                = require('gulp-imagemin'), // Minify images
+notify                  = require('gulp-notify'), // Tell about error during task processing
+pngquant                = require('imagemin-pngquant'), // Imagemin plugin for png
+rename                  = require('gulp-rename'), // Rename files
+size                    = require('gulp-size');
 
 
 // ===========OPTIONS==============
 var serverDevConfig = {
-	server: { baseDir: 'build' },
-	tunnel: false,
-	ghostMode: false,
-	online: false,
-	open: false,
+    server: { baseDir: 'build' },
+    tunnel: false,
+    ghostMode: false,
+    online: false,
+    open: false,
     notify: false,
-	host: 'localhost',
-	logPrefix: "FrontendDEV",
-	reloadDelay: 300
+    host: 'localhost',
+    logPrefix: "FrontendDEV",
+    reloadDelay: 300
 };
 // ----------
 var serverProdConfig = {
@@ -54,7 +52,7 @@ var serverProdConfig = {
     tunnel: 'tunnel',  //you can set URL name here 
     ghostMode: false,
     online: true,
-	open:  "tunnel",
+    open:  "tunnel",
     host: 'localhost',
     logPrefix: "FrontendPROD",
     reloadDelay: 500
@@ -110,18 +108,18 @@ var postcssConfig = [
 // =========== Main ============
 
 gulp.task('test', function(done) {
-	console.log('==========GULP TEST OK!==========');
-	done();
+    console.log('==========GULP TEST OK!==========');
+    done();
 });
 
 // ----browser-sync----
 gulp.task('serverDev', function() {
-	browserSync.init( serverDevConfig );
-	
+    browserSync.init( serverDevConfig );
+    
 });
 
 gulp.task('serverProd', function() {
-	browserSync.init( serverProdConfig );
+    browserSync.init( serverProdConfig );
 });
 
 gulp.task('reload', function(done) {
@@ -134,13 +132,13 @@ gulp.task('reload', function(done) {
 // =========DEV Builds========
 // --------HTML----------
 gulp.task('build:html', function (done) {
-	gulp.src(path.src.html) 
-	.pipe(fileInclude( {prefix: '@@', basepath: '@file'} ))
+    gulp.src(path.src.html) 
+    .pipe(fileInclude( {prefix: '@@', basepath: '@file'} ))
     // .pipe(htmlhint('.htmlhintrc'))
     .pipe(htmlhint())
     .pipe(htmlhint.reporter())
-	.pipe(gulp.dest(path.build.html));
-	done(); 
+    .pipe(gulp.dest(path.build.html));
+    done(); 
 });
 
 // --------JS----------
@@ -197,12 +195,12 @@ gulp.task('build:fonts', function() {
 // =========PROD Builds========
 // --------HTML----------
 gulp.task('buildProd:html', function () {
-	return gulp.src(path.src.html) 
-		.pipe(fileInclude( {prefix: '@@', basepath: '@file'} ))
+    return gulp.src(path.src.html) 
+        .pipe(fileInclude( {prefix: '@@', basepath: '@file'} ))
         // .pipe(htmlhint())
         // .pipe(htmlhint.reporter())
-		.pipe(gulp.dest(path.buildProd.html))
-		.pipe(size({ title: 'html size =' }))
+        .pipe(gulp.dest(path.buildProd.html))
+        .pipe(size({ title: 'html size =' }))
 });
 // --------JS----------
 gulp.task('buildProd:js', function () {
@@ -225,11 +223,11 @@ gulp.task('copyProd:js', function () {
 
 // --------CSS----------
 gulp.task('buildProd:css', function () {
-	return gulp.src([path.src.scss, path.src.css])
-		.pipe(sass().on('error', sass.logError))
-		.pipe(postcss(postcssConfig))
-		.pipe(cssnano({zindex: false}))
-		.pipe(rename({ suffix: '.min' }))
+    return gulp.src([path.src.scss, path.src.css])
+        .pipe(sass().on('error', sass.logError))
+        .pipe(postcss(postcssConfig))
+        .pipe(cssnano({zindex: false}))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(path.buildProd.css))
         .pipe(size({ title: 'styles size =' })) 
 });
@@ -244,7 +242,7 @@ gulp.task('purgecss', () => {
        .pipe(
             purgecss({
                 content: ['production/*.html'],
-                whitelistPatterns: [/\bjs_/, /active/]
+                whitelistPatterns: [/\bjs_/, /active/, /\bslick-/, /\bicon-/, /\bchosen-/]
             })
         )
        .pipe(gulp.dest('production/css/'))

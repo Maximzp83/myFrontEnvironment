@@ -28,11 +28,10 @@
 			flex-direction: column;
 
 			& > li {
-					& + li {margin-top: 24px;}
-					&.active,
-					&:hover {
-						a {color: $fifthsColor}
-					}
+				width: 100%;
+				a, span {cursor: pointer;}
+
+				& + li {margin-top: 24px;}
 			}
 		}
 	}
@@ -41,7 +40,7 @@
 		display: none;
 	}
 
-	button[name='mobileMenuButton'] {
+	button.mobileMenuButton {
 		margin-left: auto;
 		z-index: $zMobileMenuButton;
 	}
@@ -52,6 +51,7 @@
 	@media (min-width: $collapseBefore) {
 		.navMenuWrapper {
 			position: static;
+			width: auto;
 			
 			&.height {height: auto;}
 			&.scale {transform: scaleY(1)}
@@ -69,9 +69,15 @@
 			ul.navMenu {
 				flex-direction: row;
 
+				.submenuWrapper {
+					height: auto!important;
+					position: absolute;
+				}
+
 				& > li {
 					line-height: $navMenuHeight - 1;
 					padding: 0 10px;
+					width: auto;
 					
 					a {display: inline-block;}
 					& + li {

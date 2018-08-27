@@ -1,6 +1,7 @@
 body {
 	font-size: $pageFontSize;
 	font-family: $mainFont;
+	color: $mainFontColor;
 	position: relative;
 }
 body.pageOverlayOpen {
@@ -8,6 +9,7 @@ body.pageOverlayOpen {
 }
 
 b,strong { font-weight: bold; }
+i {font-style: italic;}
 
 // h1 { font-size: $h1FontSize; }
 // h2 { font-size: $h2FontSize; }
@@ -16,26 +18,28 @@ b,strong { font-weight: bold; }
 img {width: 100%;}
 a > img {display: table;}
 
-
 ul.disc {
 	list-style-type: disc;
+	padding-left: 20px;
 }
 ol.decimal {
 	list-style-type: decimal;
-	padding-left: 15px;
+	padding-left: 20px;
 }
 
 .capitalize { text-transform: capitalize; }
 .uppercase { text-transform: uppercase; }
+.text-right {text-align: right;}
+.text-center {text-align: center;}
 
 .relative {position: relative;}
 .title {
 	font-weight: 700;
-	color: $primaryColor;
 	font-family: $titleFont;
+	& + * {	margin-top: 15px;	}
 }
 .bold {font-weight: 700;}
-.semi-bold {font-weight: 500; }
+.semi-bold {font-weight: 600; }
 .sub-title {
 	margin-top: 10px;
 	font-size: 0.6em;
@@ -43,24 +47,18 @@ ol.decimal {
 .page-title {
 	font-size: $titleFontSize;
 	text-align: center;
-	margin-bottom: 15px;
 }
 .section-title {
-	// font-family: $titleFont;
-	// color: $primaryColor;
 	font-size: $sectionTitleFontSize;
-	text-align: center;
-	margin-bottom: 15px;
+}
+.sectionBlock-title {
+	font-size: $sectionBlockTitleFontSize;
 }
 .article-title {
-	// font-family: $titleFont;
-	// color: $primaryColor;
 	font-size: $sectionTitleFontSize;
-	text-align: center;
-	font-weight: 700;
 }
 
-
+// ------
 .mainWrapper {
 	max-width: $pageMaxWidth;
 	margin: 0 auto;
@@ -79,7 +77,7 @@ ol.decimal {
 }
 
 .pageSection,
-.container {
+.mcontainer {
 	background-color: inherit;
 }
 
@@ -93,11 +91,7 @@ ol.decimal {
 	background-color: $mainBackgroundColor;
 }
 
-.wrapperBlock > div,
-.wrapperBlock > input,
-.wrapperBlock > form,
-.wrapperBlock > button,
-.wrapperBlock > table {
+.wrapperBlock > * {
   width: 100%;
 }
 
@@ -105,6 +99,10 @@ ol.decimal {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 50%;
+}
+.imgWrapper {
+	display: table;
+	& > img {display: table-cell;}
 }
 
 // ---------Position--------
@@ -195,9 +193,22 @@ a {
 	text-decoration: none;
 	color: $linksColor;
 }
+a.underline {
+	text-decoration: underline;
+	&:hover {text-decoration: none;}
+}
 
 span.showButton {display: inline-block;}
 
+.link-with-icon,
+.row-with-icon {
+	display: inline-block;
+	& > i,
+	& > span {vertical-align: middle;}
+	&:hover {
+		span {text-decoration: underline;}
+	}
+}
 
 
 /* ======Media Queries===== */

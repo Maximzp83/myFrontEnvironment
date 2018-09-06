@@ -1,27 +1,33 @@
 RecentFunctions = (function () {
 
+  function returnDOM(element) {
+    return element instanceof jQuery ? element[0] : element;
+  }
+
 	function getCurrentYPosition() {
 	  return window.pageYOffset || document.documentElement.scrollTop;
 	}
 
 	function addClassTo(element, activeClass) {
-		if (!element.classList.contains(activeClass)) {
-			element.classList.add(activeClass);
+    var elem = returnDOM(element);
+		if (!elem.classList.contains(activeClass)) {
+			elem.classList.add(activeClass);
 		}
 	}
 	function removeClassFrom(element, activeClass) {
-		if (element.classList.contains(activeClass)) {
-			element.classList.remove(activeClass);
+    var elem = returnDOM(element);
+		if (elem.classList.contains(activeClass)) {
+			elem.classList.remove(activeClass);
 		}
 	}
 
 	function transitionHandler(event, targetBlock, hiddenContent) {
 		if (event.propertyName) {
-			console.log(event.propertyName)
+			console.log(event.propertyName)  // your code here
 		}
 
 		if (event.srcElement) {
-			console.log(event.srcElement)
+			console.log(event.srcElement)  // your code here
 		}
 	}
 
@@ -35,21 +41,19 @@ RecentFunctions = (function () {
  		return result;
  	}
 
- 	function getCoordsOnPage(elem) { 
- 		element.length ? elem = element[0] : elem = element;
+ 	function getCoordsOnPage(element) { 
+ 		var elem = returnDOM(element);
  		var box = elem.getBoundingClientRect();
 
  		return {
  			top: box.top + pageYOffset,
  			left: box.left + pageXOffset,
  			bottom: box.bottom + pageYOffset
-
  		};
  	}
 
  	function getCoordsOnScreen(element) {
- 		var elem;
- 		element.length ? elem = element[0] : elem = element;
+ 		var elem = returnDOM(element);
  		var box = elem.getBoundingClientRect();
   	// console.log(box)
 
@@ -92,8 +96,22 @@ RecentFunctions = (function () {
   	}
   }
 
+  function isVisibleOnXAxis(element, parent) {
+    let isVisibleOnLeft = element.getBoundingClientRect().left > parent.getBoundingClientRect().left;
+    let isVisibleOnRight = element.getBoundingClientRect().right < parent.getBoundingClientRect().right;
+    return isVisibleOnLeft && isVisibleOnRight;
+  }
+
+  function isLastChild(element) {
+    return element.nextElementSibling ? false : true;
+  }
+  function isFirstChild(element) {
+    return element.previousElementSibling ? false : true;
+  }
+
   // ------------
   return {
+    returnDOM: returnDOM,
   	getCurrentYPosition: getCurrentYPosition,
   	addClassTo: addClassTo,
   	removeClassFrom: removeClassFrom,
@@ -104,6 +122,9 @@ RecentFunctions = (function () {
   	openWidth: openWidth,
   	collapseWidth: collapseWidth,
   	isVisible: isVisible,
+    isVisibleOnXAxis: isVisibleOnXAxis,
+    isLastChild: isLastChild,
+    isFirstChild: isFirstChild,
   }
   
 })()

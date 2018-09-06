@@ -1,7 +1,12 @@
 let status = "JS - OK!";
-console.log(status);
+function cl(arg1, arg2, arg3, arg4) {
+	console.log(arg1, arg2 || '', arg3 || '', arg4 || '');
+	return '-';
+}
 
-var PopupModule, RecentFunctions;
+cl(status);
+
+var PopupModule, RecentFunctions, ValidationModule;
 var AccordionModule;
 var AnimateBorder;
 
@@ -11,7 +16,7 @@ var popupOrder,
 var test = 'include js error';
 
 $(document).ready(function() {
-	// console.log('document ready')
+	console.log('document ready')
 	popupOrder = document.getElementById('popupOrder');
 	
 	modals = document.getElementsByClassName('popup');
@@ -22,7 +27,7 @@ $(document).ready(function() {
 
 	@@include('testModule.js')
 
-	@@include('frames/RecentFunctionsModule.js')
+	/*@@include('frames/RecentFunctionsModule.js')*/
 	/*@@include('frames/toggleButtonContent.js')*/
 	/*@@include('frames/custom_Input_Type_number.js')*/
 
@@ -32,6 +37,7 @@ $(document).ready(function() {
 	/*@@include('frames/PopupModule.js')*/
 	/*@@include('frames/TextLimitModule.js')*/
 	/*@@include('frames/AnimateBorderModule.js')*/
+	/*@@include('frames/ValidationModule.js')*/
 
 
 	// =============================================================
@@ -87,11 +93,6 @@ $(document).ready(function() {
 
 
 
-	window.onload = function() {
-		console.log('window load')
-	}
-
-
 	// ===========Initializations=============
 
 	// AnimateBorder(document.querySelectorAll('.animated-border-block svg'), {
@@ -103,3 +104,9 @@ $(document).ready(function() {
 	// })
 
 });
+
+
+window.onload = function() {
+	console.log('window load')
+	// $('#page-preloader').fadeOut('slow');
+}

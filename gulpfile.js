@@ -24,6 +24,8 @@ uglify                  = require('gulp-uglify'), // JavaScript minification
 
 //OTHER
 // absolutePath         = require('path'), // Create file's path
+// cache                    = require('gulp-cached'), // Cache edited files
+// concat                   = require('gulp-concat'), // Get different files joined
 del                     = require('del'), // Remove files
 // gulpIf                   = require('gulp-if'),
 fileInclude             = require('gulp-file-include'),
@@ -48,6 +50,17 @@ var serverDevConfig = {
 };
 // ----------
 var serverProdConfig = {
+    server: { baseDir: "production" },
+    tunnel: false,
+    ghostMode: false,
+    online: false,
+    open:  true,
+    host: 'localhost',
+    logPrefix: "FrontendPROD",
+    reloadDelay: 500
+};
+
+var serverTunnelConfig = {
     server: { baseDir: "production" },
     tunnel: 'tunnel',  //you can set URL name here 
     ghostMode: false,
@@ -122,6 +135,10 @@ gulp.task('serverProd', function() {
     browserSync.init( serverProdConfig );
 });
 
+gulp.task('serverTunnel', function() {
+    browserSync.init( serverTunnelConfig );
+});
+
 gulp.task('reload', function(done) {
     browserSync.reload();
     done();
@@ -130,6 +147,10 @@ gulp.task('reload', function(done) {
 // =====================
 
 // =========DEV Builds========
+gulp.task('copy_to_root:dev', function () {
+    return gulp.src('src/copy_to_root/*.*')
+        .pipe(gulp.dest(path.build.html)) 
+});
 // --------HTML----------
 gulp.task('build:html', function (done) {
     gulp.src(path.src.html) 
@@ -193,6 +214,10 @@ gulp.task('build:fonts', function() {
 });
 
 // =========PROD Builds========
+gulp.task('copy_to_root:prod', function () {
+    return gulp.src('src/copy_to_root/*.*')
+        .pipe(gulp.dest(path.buildProd.html)) 
+});
 // --------HTML----------
 gulp.task('buildProd:html', function () {
     return gulp.src(path.src.html) 
@@ -242,7 +267,7 @@ gulp.task('purgecss', () => {
        .pipe(
             purgecss({
                 content: ['production/*.html'],
-                whitelistPatterns: [/\bjs_/, /active/, /\bslick-/, /\bicon-/, /\bchosen-/]
+                whitelistPatterns: [/\bjs_/, /active/, /\bslick-/, /\bicon-/, /\bchosen-/, /\bcbox/, /colorbox/, /\blombard/, /\bgm/]
             })
         )
        .pipe(gulp.dest('production/css/'))
@@ -282,11 +307,12 @@ gulp.task('clean:img', function() {
 
 // -----Dev-----
 gulp.task('build:dev', gulp.series('clean:build', gulp.parallel(
-    'build:html','build:js','copy:js','build:css','copy:css','build:fonts','build:image'
+    'build:html','build:js','copy:js','build:css','copy:css','build:fonts','build:image','copy_to_root:dev'
     )));
 
 // -----Prod-----
 gulp.task('build:prod', gulp.series('clean:production', gulp.series(
+    'copy_to_root:prod',
     'buildProd:html',
     'buildProd:js',
     'copyProd:js',
@@ -312,3 +338,5 @@ gulp.task('dev', gulp.series('build:dev', gulp.parallel('watch', 'serverDev') ))
 // =============PRODUCTION=============
 gulp.task('prod', gulp.series('build:prod', 'serverProd') );
 
+// =============Tunnel=============
+gulp.task('tunnel', gulp.series('build:prod', 'serverTunnel') );

@@ -6,44 +6,37 @@ function cl(arg1, arg2, arg3, arg4) {
 
 cl(status);
 
-var PopupModule, RecentFunctions, ValidationModule;
-var AccordionModule;
-var AnimateBorder;
 
-var popupOrder,
-		modals, pageOverlay;
+var glob = {
+	
+}
+
+// =================
+@@include('frames/globalFunctions.js')
+// ===============
+
 
 var test = 'include js error';
 
 $(document).ready(function() {
 	console.log('document ready')
-	popupOrder = document.getElementById('popupOrder');
 	
-	modals = document.getElementsByClassName('popup');
-	pageOverlay = document.getElementById('pageOverlay');
-
-
 	// =================Include Modules==============================
 
 	@@include('testModule.js')
 
-	/*@@include('frames/RecentFunctionsModule.js')*/
-	/*@@include('frames/toggleButtonContent.js')*/
-	/*@@include('frames/custom_Input_Type_number.js')*/
-
-	/*@@include('frames/AccordionModule.js')*/
-	/*@@include('frames/ToggleContentModule.js')*/
-	/*@@include('frames/SwitchTabsModule.js')*/
-	/*@@include('frames/PopupModule.js')*/
-	/*@@include('frames/TextLimitModule.js')*/
+  /*@@include('frames/PopupModule.js')*/
+  /*@@include('frames/ValidationModule.js')*/
 	/*@@include('frames/AnimateBorderModule.js')*/
-	/*@@include('frames/ValidationModule.js')*/
-
-
+  /*@@include('frames/custom_Input_Type_number.js')*/
+  /*@@include('frames/AccordionModule.js')*/
+  /*@@include('frames/ToggleContentModule.js')*/
+  /*@@include('frames/SwitchTabsModule.js')*/
+  /*@@include('frames/TextLimitModule.js')*/
+ 
 	// =============================================================
 
-	
-		// console.log('window load')
+		console.log('window load')
 
 	if ($('body')) {console.log('jQuery OK')}
 	console.log(test);
@@ -51,10 +44,19 @@ $(document).ready(function() {
 
   // ---------Popups Block-------
 
-	$('body').on('click', '.orderButton', function() {
+	$('body').on('click', '.searchButton', function() {
   	// e.preventDefault();
-  	if (popupOrder) {
-  		PopupModule.openPopup(popupOrder);
+  	let modal = $('#popupSearch');
+  	if ( modal.length ) {
+  		glob.PopupModule.openPopup(modal, "js_openPopup_search");
+  	}
+  });
+
+  $('body').on('click', '.button', function() {
+  	// e.preventDefault();
+  	let modal = $('#popupOrder');
+  	if ( modal.length ) {
+  		glob.PopupModule.openPopup(modal);
   	}
   });
 
@@ -69,8 +71,8 @@ $(document).ready(function() {
 
 		// let siblingsBlocks = document.querySelectorAll('#publicInfoPage article.publicInfo-block .titleBlock + .hiddenContent');
 
-			toggleButtonContent(button);
-			AccordionModule.toggleContent("withoutSiblings", button, submenuBlock );
+			globFunc.toggleButtonContent(button);
+			glob.AccordionModule.toggleContent("withoutSiblings", button, submenuBlock );
 			// AccordionModule.toggleContent("withSiblings", button, submenuBlock, siblingsBlocks );				
 
 		}

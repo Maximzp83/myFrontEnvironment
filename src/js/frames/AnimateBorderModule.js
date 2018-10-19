@@ -1,4 +1,4 @@
-AnimateBorder = function (animatedBlocks, optionsObj) {
+glob.AnimateBorder = function (animatedBlocks, optionsObj) {
 
 	var animatedDashBlocks = animatedBlocks;
 	var options = optionsObj;

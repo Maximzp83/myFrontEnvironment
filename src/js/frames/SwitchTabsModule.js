@@ -1,4 +1,4 @@
-var SwitchTabsModule  = (function() {
+glob.SwitchTabsModule  = (function() {
 	console.log('SwitchTabsModule ok');
 
 		const tabsButtons = document.querySelectorAll('.tabsNav .tab'),

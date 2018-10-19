@@ -4,7 +4,7 @@ body {
 	color: $mainFontColor;
 	position: relative;
 }
-body.pageOverlayOpen {
+body.js_pageOverlayOpen {
 	overflow: hidden;
 }
 
@@ -26,6 +26,9 @@ ol.decimal {
 	list-style-type: decimal;
 	padding-left: 20px;
 }
+
+.icomoon + span {margin-left: 5px;}
+
 
 .capitalize { text-transform: capitalize; }
 .uppercase { text-transform: uppercase; }
@@ -56,6 +59,16 @@ ol.decimal {
 }
 .article-title {
 	font-size: $sectionTitleFontSize;
+}
+
+.list-title {
+	& + ul,
+	& + ol {margin: 10px 0 0 0;}
+
+	&.label {
+		& + ul,
+		& + ol {margin: 0 0 0 10px;}
+	}
 }
 
 // ------
@@ -105,6 +118,15 @@ ol.decimal {
 	& > img {display: table-cell;}
 }
 
+.js_hidden {
+	visibility: hidden;
+	opacity: 0;
+	width: 0;
+	height: 0!important;
+	padding: 0 !important;
+	z-index: -100;
+}
+
 // ---------Position--------
 .relative {position: relative;}
 .absolute {position: absolute;}
@@ -115,6 +137,9 @@ ol.decimal {
 .absolute.stretch {
 	top: 0; bottom: 0; left: 0; right: 0;
 }
+
+.js_overflowHidden {overflow: hidden;}
+.js_fixed {	position: fixed!important; }
 
 
 // =========Buttons, inputs, links======
@@ -210,6 +235,24 @@ span.showButton {display: inline-block;}
 	}
 }
 
+[data-validate] {
+
+	&.js_containsError {
+		border-width: 2px;
+		border-color: red;
+
+		&:focus {	border-width: 1px; }
+	}
+}
+
+ul.js_warning-list {
+	text-align: center;
+	margin-top: 5px;
+	li {
+		color: red;
+		& + li {margin-top: 3px;}
+	}
+}
 
 /* ======Media Queries===== */
 
@@ -222,3 +265,9 @@ span.showButton {display: inline-block;}
 	}
 }
 
+
+@media (min-width: 1279px) {
+	.section-title {
+		font-size: $sectionTitleFontSizeDesktop;
+	}
+}

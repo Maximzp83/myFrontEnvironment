@@ -1,4 +1,4 @@
-let AccordionModule  = (function() {
+glob.AccordionModule  = (function() {
 	console.log('AccordionModule ok');
 	
 	function toggleContent(options, button, targetBlock, allTargetBlocks) {

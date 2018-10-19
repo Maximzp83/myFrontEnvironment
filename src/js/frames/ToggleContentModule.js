@@ -1,4 +1,4 @@
-var ToggleContentModule  = (function() {
+glob.ToggleContentModule  = (function() {
 	console.log('ToggleContentModule ok');
 	// console.time('ToggleContent Module load');
 

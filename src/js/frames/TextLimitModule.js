@@ -1,4 +1,4 @@
-var TextLimitModule  = (function() {
+glob.TextLimitModule  = (function() {
 	console.log('TextLimitModule ok');
 
 	function sliceText(slicingBlocks, maxLength) {

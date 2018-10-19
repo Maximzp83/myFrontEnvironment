@@ -1,72 +1,16 @@
-console.log('PopupModule ok');
-
-function showOverlay(overlayType, overlayElement) {
-
-  switch (overlayType) {
-    case "popup":
-      if (!overlayElement.classList.contains('js_openPopup')) {
-        overlayElement.style.zIndex = 1150;
-        overlayElement.style.visibility = 'visible';
-        overlayElement.classList.add('js_openPopup');
-        overlayElement.classList.add('js_open');
-
-        document.body.classList.add("js_pageOverlayOpen");
-      } 
-    break;
-
-    case "menu":
-      if (!overlayElement.classList.contains('js_openMenu')) {
-        overlayElement.style.zIndex = 900;
-        overlayElement.style.visibility = 'visible';
-        overlayElement.classList.add('js_openMenu');
-        overlayElement.classList.add('js_open');
-        document.body.classList.add("js_pageOverlayOpen");
-      } 
-    break;
-  }
-}
-
-function hideOverlay(overlayType, overlayElement) {
-
-  switch (overlayType) {
-    case "popup":
-      if (overlayElement.classList.contains('js_openPopup')) {
-        overlayElement.classList.remove('js_openPopup');
-        overlayElement.classList.remove('js_open');
-
-        document.body.classList.remove("js_pageOverlayOpen");
-        setTimeout(function () {
-          if (!overlayElement.classList.contains('js_openPopup')) {
-            overlayElement.style.zIndex = -10;
-            overlayElement.style.visibility = 'hidden';
-          }
-        }, 300)
-      }
-    break;
-
-    case "menu":
-    if (!overlayElement.classList.contains('js_openMenu')) {
-      overlayElement.classList.remove('js_openMenu');
-      overlayElement.classList.remove('js_open');
-      document.body.classList.remove("js_pageOverlayOpen");
-      setTimeout(function () {
-        if (!overlayElement.classList.contains('js_openMenu')) {
-          overlayElement.style.zIndex = -10;
-          overlayElement.style.visibility = 'hidden';
-        }
-      }, 300)
-    }
-    break;
-  }
-}
-
+// console.log('PopupModule ok');
 // ==============Popup Open/Close Module ==============
-PopupModule = (function () {
+glob.PopupModule = (function () {
+  var additionalClassStr;
+  let modals = document.getElementsByClassName('popup');
+  const pageOverlay = document.getElementById('pageOverlay');
+
 
   function toggleShow(event, popupBlock) {
+    var popup = globFunc.returnDOM(popupBlock);
     // console.log('event,')
     if ( event.propertyName == 'opacity' ) {
-      popupBlock.classList.contains('animate') ? null : popupBlock.classList.remove('js_open');
+      popup.classList.contains('js_animate') ? null : popup.classList.remove('js_open');
     }
   }
 
@@ -79,45 +23,33 @@ PopupModule = (function () {
     }
   }
 
-	function openPopup(popupBlock, overlayBlock) {
+  function openPopup(popupBlock, additionalClass, overlayBlock) {
     let overlay = overlayBlock || pageOverlay;
 
-    let popup = popupBlock.length ? popupBlock[0] : popupBlock;
+    var popup = globFunc.returnDOM(popupBlock);
         popup.classList.add("js_open");
         popup.classList.add("js_animate");
 
-    showOverlay("popup", overlay);
-	}
-
-  function closePopup(popupBlock, overlayBlock) {
-    let overlay = overlayBlock || pageOverlay;
-
-    let popup = popupBlock.length ? popupBlock[0] : popupBlock;
-    
-    popup.classList.remove("js_animate");
-    hideOverlay("popup", overlay);
+    if (additionalClass) {
+      additionalClassStr = additionalClass;
+      globFunc.showOverlay("popup", overlay, additionalClass) 
+    } else {
+      globFunc.showOverlay("popup", overlay);
+    }
   }
 
-	// function closePopup(popupBlock) {
-  //     let popup = popupBlock.length ? popupBlock[0] : popupBlock;
-      
-  //     popup.addEventListener("transitionend", hidePopup);
-
-  //     function hidePopup(e) {
-  //        e.stopPropagation();
-         
-  //         if ( e.propertyName == 'opacity' ) {
-  //           popup.classList.remove("show");
-  //         }
-  //         popup.removeEventListener("transitionend", hidePopup);
-  //     }
-  //     popup.classList.remove("js_open");
-  //   }
+  function closePopup(popupBlock) {
+    // let overlay = overlayBlock || pageOverlay;
+    var popup = globFunc.returnDOM(popupBlock);
+    
+    popup.classList.remove("js_animate");
+    // additionalClass ? hideOverlay("popup", overlay, additionalClass) : hideOverlay("popup", overlay);
+  }
 
   // -------Events--------  
 
   $('body').on('click', '#pageOverlay', function() {
-  	hideOverlay("popup", this);
+    globFunc.hideOverlay("popup", this, additionalClassStr);
 
     if (modals) {
       for (var i = 0; i < modals.length; i++) {
@@ -127,16 +59,14 @@ PopupModule = (function () {
   });
    
   $('body').on('click', 'button.popupCloseButton', function() {
-
     closePopup( $(this).closest('.popup') );
-
-    hideOverlay("popup", pageOverlay);
+    globFunc.hideOverlay("popup", pageOverlay, additionalClassStr);
   });
 
   window.onkeydown = function (e) {
-  	if (e.keyCode === 27 ) {
+    if (e.keyCode === 27 ) {
       if (pageOverlay) {
-        pageOverlay.classList.contains('js_open') ? hideOverlay("popup", pageOverlay) : null;
+        pageOverlay.classList.contains('js_open') ? globFunc.hideOverlay("popup", pageOverlay, additionalClassStr) : null;
       }
 
       if (modals) {
@@ -149,11 +79,17 @@ PopupModule = (function () {
 
   // ------------
 
-	return {
-		openPopup: openPopup,
-		closePopup: closePopup,
-    showOverlay: showOverlay,
-    hideOverlay: hideOverlay, 
-	}
+  return {
+    openPopup: openPopup,
+    closePopup: closePopup,
+  }
 
 })();
+
+// glob.PopupModule()
+
+// (function() {
+
+
+
+// }).call(glob.PopupModule.prototype)

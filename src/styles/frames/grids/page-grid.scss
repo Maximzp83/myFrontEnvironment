@@ -91,22 +91,23 @@ body div.contentWrapper .no-margin {
 }
 
 // ------------Columns-----------------
+
 [class*="mcol-"] {
   max-width: 100%;
   flex-shrink: 1;
-
-  &.auto {
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: auto;
-    width: auto;
-    max-width: none;
-  }
 
   &.fluid {
     flex-grow: 1;
     max-width: none;
   }
+}
+
+.mcol-xs-auto {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+  width: auto;
+  max-width: none;
 }
 
 .mcol-xs-12 {
@@ -185,6 +186,14 @@ body div.contentWrapper .no-margin {
   .mcol-xsm-show {display: block !important;}
   .mcol-xsm-hide {display: none !important;}
 
+  .mcol-xsm-auto {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    width: auto;
+    max-width: none;
+  }
+
   .mcol-xsm-12 {
     flex-basis: 100%;
     width: 100%;
@@ -255,6 +264,14 @@ body div.contentWrapper .no-margin {
 @media (min-width: 767px) {
   .mcol-sm-show {display: block !important;}
   .mcol-sm-hide {display: none !important;}
+
+  .mcol-sm-auto {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    width: auto;
+    max-width: none;
+  }
 
   .mcol-sm-12 {
     flex-basis: 100%;
@@ -327,6 +344,13 @@ body div.contentWrapper .no-margin {
   .mcol-md-show {display: block !important;}
   .mcol-md-hide {display: none !important;}
 
+  .mcol-md-auto {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    width: auto;
+    max-width: none;
+  }
   .mcol-md-12 {
     flex-basis: 100%;
     width: 100%;
@@ -398,6 +422,13 @@ body div.contentWrapper .no-margin {
   .mcol-lg-show {display: block !important;}
   .mcol-lg-hide {display: none !important;}
 
+  .mcol-lg-auto {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    width: auto;
+    max-width: none;
+  }
   .mcol-lg-12 {
     flex-basis: 100%;
     width: 100%;

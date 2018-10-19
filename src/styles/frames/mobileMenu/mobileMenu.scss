@@ -5,6 +5,7 @@
 
 	.navMenuWrapper {
 		position: absolute;
+		top: 100%;
 		width: 100%;
 		background-color: inherit;
 		z-index: $zMobileMenu;
@@ -18,8 +19,14 @@
 				margin-bottom: 20px;
 			}
 
-			.menuSection + .menuSection {
-				margin-top: 25px;
+			.menu-section + .menu-section {
+				margin-top: 13px;
+				// border-top: 1px solid $menuBorderColor;
+				padding-top: 13px;
+			}
+
+			.menu-section:last-child {
+				border: 0;
 			}
 		}
 
@@ -28,17 +35,19 @@
 			flex-direction: column;
 
 			& > li {
-				width: 100%;
-				a, span {cursor: pointer;}
+					width: 100%;
 
-				& + li {margin-top: 24px;}
+					a, span {cursor: pointer;}
+
+					& + li {margin-top: 20px;}
+					// &.active {color: $primaryColor;}
+					// &:hover {
+					// 	a {color: $primaryColor}
+					// }
 			}
 		}
 	}
 
-	.searchBlock {
-		display: none;
-	}
 
 	button.mobileMenuButton {
 		margin-left: auto;
@@ -52,17 +61,21 @@
 		.navMenuWrapper {
 			position: static;
 			width: auto;
+			// overflow: hidden;
 			
 			&.height {height: auto;}
 			&.scale {transform: scaleY(1)}
 			&.opacityAnimate > div {opacity: 1;}
+			&.right {}
 
 			.navMenuContainer {
 				flex-direction: row;
 				align-items: center;
 
-				.menuSection + .menuSection {
+				.menu-section + .menu-section {
 					margin-top: 0;
+					padding-top: 0;
+					border: 0;
 				}
 			}
 
@@ -72,10 +85,11 @@
 				.submenuWrapper {
 					height: auto!important;
 					position: absolute;
+					
 				}
 
 				& > li {
-					line-height: $navMenuHeight - 1;
+					// line-height: $navMenuHeight - 1;
 					padding: 0 10px;
 					width: auto;
 					
@@ -92,9 +106,18 @@
 				margin-left: auto;
 			}
 		}
-		button.mobileMenuButton {
-			display: none;
+		
+	}
+
+	@media (min-width: 1279px) {
+		.navMenuWrapper {
+			ul.navMenu {
+				& > li {
+					padding: 0 15px;
+				}
+			}
 		}
 	}
+	
 
 }

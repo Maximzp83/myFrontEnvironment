@@ -12,8 +12,12 @@ $white: #fff;
 /* -----Fonts-----*/
 $pageFontSize: 14px;
 $mainFont: "Arial";
-$mainFontColor: #1B1E1F;
 $secondaryFont: "Arial";
+
+$mainFontColor: #1B1E1F;
+$secondaryFontColor: $white;
+$descriptionTextColor: $mainFontColor;
+$subDescriptionColor: rgba(13, 13, 15, 0.5);
 
 $titleFont: $mainFont;
 $titleFontSize: 2rem;
@@ -24,16 +28,15 @@ $sectionTitleFontSizeDesktop: 40px;
 $sectionBlockTitleFontSize: 24px;
 $articleTitleFontSize: 24px;
 
-$secondaryFontColor: $white;
-$descriptionTextColor: #8D8E8F;
-$subDescriptionColor: rgba(13, 13, 15, 0.5);
-
 /* ======Components Options======= */
 /* ------Color---------- */
 $mainBackgroundColor: $tertiaryColor;
 
 $headerColor: $primaryColor;
 $headerFontColor: $white;
+
+$headerBottomColor: $white;
+$headerBottomFontColor: #161618;
 
 $footerColor: $fourthColor;
 $footerFontColor: $secondaryFontColor;
@@ -101,7 +104,7 @@ $labelFontSize: 13px;
 
 /* ------Z-index-------- */
 $zMobileMenu: 1000;
-$zMobileMenuButton: $zMobileMenu;
+$zMobileMenuButton: $zMobileMenu + 10;
 
 $pageOverlayZIndex: $zMobileMenu - 50;
 $darkOverlayZIndex: $pageOverlayZIndex - 100;

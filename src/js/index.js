@@ -33,6 +33,8 @@ $(document).ready(function() {
   /*@@include('frames/ToggleContentModule.js')*/
   /*@@include('frames/SwitchTabsModule.js')*/
   /*@@include('frames/TextLimitModule.js')*/
+  /*@@include('frames/StickyBlockModule.js')*/
+
  
 	// =============================================================
 
@@ -54,14 +56,14 @@ $(document).ready(function() {
 
   $('body').on('click', '.button', function() {
   	// e.preventDefault();
-  	let modal = $('#popupOrder');
-  	if ( modal.length ) {
+  	let modal = document.getElementById('id');
+  	if ( modal ) {
   		glob.PopupModule.openPopup(modal);
   	}
   });
 
   // ---------Accordion Blocks-------
-	$('accordionBlockSelector').on('click', '.buttonSelector', function(e) {
+	/*$('accordionBlockSelector').on('click', '.buttonSelector', function(e) {
 		// console.time('click accordion working time');
 
 		if (document.documentElement.clientWidth < 992) {
@@ -77,21 +79,21 @@ $(document).ready(function() {
 
 		}
 		// console.timeEnd('click accordion working time');
-	})
+	})*/
 
   // ---------Text Limit-------
-	// let textBlocks = document.querySelectorAll('.selector');
-	// textBlocks.length ? TextLimitModule.sliceText(textBlocks, 180) : null;
+	/*let textBlocks = document.querySelectorAll('.selector');
+	textBlocks.length ? TextLimitModule.sliceText(textBlocks, 180) : null;*/
 	
 
 	// ----------Scroll-to Section---------------
 	
-	// $('body').on('click', 'article.story-item', function() {
+	/*$('body').on('click', 'article.story-item', function() {
 		
-	// 	$('html, body').animate({
-	// 		scrollTop: $("#" + $(this).attr('data-story-id') ).offset().top
-	// 	}, 500);
-	// })
+		$('html, body').animate({
+			scrollTop: $("#" + $(this).attr('data-story-id') ).offset().top
+		}, 500);
+	})*/
 
 
 

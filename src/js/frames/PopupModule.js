@@ -63,6 +63,13 @@ glob.PopupModule = (function () {
     globFunc.hideOverlay("popup", pageOverlay, additionalClassStr);
   });
 
+  $('body').on('click', '.popup', function(e) {
+    if (e.target.classList.contains('popup')) {
+      closePopup( e.target );
+      globFunc.hideOverlay("popup", pageOverlay, additionalClassStr);
+    }
+  });
+
   window.onkeydown = function (e) {
     if (e.keyCode === 27 ) {
       if (pageOverlay) {

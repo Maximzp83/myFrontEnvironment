@@ -38,7 +38,6 @@ $(document).ready(function() {
  
 	// =============================================================
 
-		console.log('window load')
 
 	if ($('body')) {console.log('jQuery OK')}
 	console.log(test);

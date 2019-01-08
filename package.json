@@ -27,7 +27,7 @@
     "browser-sync": "^2.18.13",
     "css-mqpacker": "^6.0.1",
     "del": "^3.0.0",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "4.0",
     "gulp-babel": "^6.1.2",
     "gulp-cssnano": "^2.1.2",
     "gulp-file-include": "^1.1.0",

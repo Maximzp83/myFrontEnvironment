@@ -15,7 +15,7 @@ glob.LazyLoadModule  = (function() {
 				if (!lazyBlocks[i].getAttribute('has-preloader')) {
 					var preloader = document.createElement('div');
 					preloader.className = 'imgPreloader';
-					preloader.innerHTML = '<img src="/img/icons/eagles.svg" alt="loader">'
+					preloader.innerHTML = '<img src="/img/icons/lazy_preloader.jpg" alt="loader">'
 					lazyBlocks[i].parentElement.appendChild(preloader);
 					lazyBlocks[i].setAttribute('has-preloader', true);
 				}

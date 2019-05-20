@@ -49,34 +49,49 @@ var globFunc = {
       break;
 
       case "menu":
-      if (!overlayElement.classList.contains('js_openMenu')) {
-        overlayElement.classList.remove('js_openMenu');
-        overlayElement.classList.remove('js_open');
-        document.body.classList.remove("js_pageOverlayOpen");
-        setTimeout(function () {
-          if (!overlayElement.classList.contains('js_openMenu')) {
-            overlayElement.style.zIndex = -10;
-            overlayElement.style.visibility = 'hidden';
-          }
-        }, 300)
-      }
+        if (overlayElement.classList.contains('js_openMenu')) {
+          overlayElement.classList.remove('js_openMenu');
+          overlayElement.classList.remove('js_open');
+          document.body.classList.remove("js_pageOverlayOpen");
+          setTimeout(function () {
+            if (!overlayElement.classList.contains('js_openMenu')) {
+              overlayElement.style.zIndex = -10;
+              overlayElement.style.visibility = 'hidden';
+            }
+          }, 300)
+        }
       break;
     }
   },
 
-  toggleButtonContent: function (buttonElement, text) {
+  toggleButtonContent: function (buttonElement, strObj) {
     var button = this.returnDOM(buttonElement);
+    var text;
 
+    // console.log(buttonElement)
+
+    if (strObj) { text = strObj } else if (buttonElement.dataset.text) {
+      text = {
+        default: buttonElement.dataset.text,
+        active: buttonElement.dataset.textActive
+      }
+    }
     let buttonActive = button.classList.contains('active');
 
     if (buttonActive) {
-      text ? button.firstElementChild.innerHTML = text.default : null;
+      text ? button.querySelector('span').innerHTML = text.default : null;
       button.classList.remove('active');
 
     } else {
-      text ? button.firstElementChild.innerHTML = text.active : null;
+      text ? button.querySelector('span').innerHTML = text.active : null;
       button.classList.add('active');
     }
+  },
+
+  animateBlock: function (block) {
+    let self = this;
+    this.removeClassFrom(block, 'js_animate');
+    setTimeout(function() {self.addClassTo(block, 'js_animate') }, 50)
   },
 
   getCurrentYPosition: function() {
@@ -166,7 +181,8 @@ var globFunc = {
     }
 
     if (opt == "topBorder") {
-      return (elemPageTop >= windowTop + 12) && (elemPageTop <= windowTop + windowHeight);
+      // console.log(windowTop)
+      return (elemPageTop >= windowTop + 130) && (elemPageTop <= windowTop + windowHeight);
     }
 
     if (opt == "topBorderIn") {

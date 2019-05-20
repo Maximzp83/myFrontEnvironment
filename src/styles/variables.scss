@@ -4,6 +4,7 @@ $primaryColor: #E32013;
 $secondaryColor: #FFD04A; 
 $tertiaryColor: #E8E8E8;	
 $fourthColor: #252829; 
+$fifthColor: #1B51A7;
 
 $black: #000;
 $white: #fff;
@@ -13,6 +14,7 @@ $white: #fff;
 $pageFontSize: 14px;
 $mainFont: "Arial";
 $secondaryFont: "Arial";
+$tertiaryFont: "Arial";
 
 $mainFontColor: #1B1E1F;
 $secondaryFontColor: $white;
@@ -20,14 +22,21 @@ $descriptionTextColor: $mainFontColor;
 $subDescriptionColor: rgba(13, 13, 15, 0.5);
 
 $titleFont: $mainFont;
-$titleFontSize: 2rem;
+$titleFontSize: 1.5rem;
 $titleFontSizeLaptop: 2rem;
-$sectionTitleFontSize: 1.5rem;
-$sectionTitleFontSizeLaptop: 28px;
-$sectionTitleFontSizeDesktop: 40px;
+$titleFontSizeDesktop: 2.5rem;
+
+$sectionTitleFontSize: 1.3rem;
+$sectionTitleFontSizeLaptop: 1.6rem;
+$sectionTitleFontSizeDesktop: 2rem;
+
+$articleTitleFontSize: 16px;
+$articleTitleFontSizeLaptop: 16px;
+$articleTitleFontSizeDesktop: 16px;
+
+
 $sectionBlockTitleFontSize: 24px;
-$articleTitleFontSize: 24px;
-$descriptionTitleFontSize: 24px;
+$descriptionTitleFontSize: 20px;
 
 /* ======Components Options======= */
 /* ------Color---------- */
@@ -47,6 +56,8 @@ $mobileMenuColor: $primaryColor;
 $formElementsBorderColor: $secondaryColor;
 $formElementsFocusBorderColor: $primaryColor;
 
+$borderColor: #EDE7E1;
+
 $linksColor: $fourthColor;
 
 $darkOverlayColor: rgb(0,0,0);
@@ -62,8 +73,8 @@ $larger: 16px;
 $large: 18px;
 $big: 24px;
 
-$descriptionLineHeight: 1.35rem;
-$descriptionFontSize: 0.9rem;
+$descriptionLineHeight: 24px;
+$descriptionFontSize: 16px;
 
 
 /* ------Sizes----------*/
@@ -74,6 +85,7 @@ $formElementsHeight: 40px;
 
 $standardButtonHeight: 40px;
 
+// $navMenuHeight: 90px;
 
 /* ------Margins/Paddings------ */
 

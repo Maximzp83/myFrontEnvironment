@@ -15,10 +15,6 @@
 			flex-direction: column;
 			background-color: inherit;
 
-			.title {
-				margin-bottom: 20px;
-			}
-
 			.menu-section + .menu-section {
 				margin-top: 13px;
 				// border-top: 1px solid $menuBorderColor;
@@ -85,7 +81,7 @@
 				.submenuWrapper {
 					height: auto!important;
 					position: absolute;
-					
+					background-color: inherit;
 				}
 
 				& > li {
@@ -93,7 +89,11 @@
 					padding: 0 10px;
 					width: auto;
 					
-					a {display: inline-block;}
+					a {
+						display: inline-block;
+						line-height: $headerHeight;
+						color: $headerColor;
+					}
 					& + li {
 						margin-top: 0;
 						// margin-left: 5px;

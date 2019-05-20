@@ -4,9 +4,7 @@ body {
 	color: $mainFontColor;
 	position: relative;
 }
-body.js_pageOverlayOpen {
-	overflow: hidden;
-}
+body.js_pageOverlayOpen {	overflow: hidden;}
 
 b,strong { font-weight: bold; }
 i {font-style: italic;}
@@ -40,6 +38,9 @@ ol.decimal {
 
 .relative {position: relative;}
 
+.primaryColor {color: $primaryColor!important;}
+
+
 .title {
 	font-weight: 700;
 	font-family: $titleFont;
@@ -53,7 +54,8 @@ ol.decimal {
 .page-title {	font-size: $titleFontSize; }
 .section-title { font-size: $sectionTitleFontSize; }
 .sectionBlock-title {	font-size: $sectionBlockTitleFontSize; }
-.article-title { font-size: $sectionTitleFontSize; }
+.article-title { font-size: $articleTitleFontSize; }
+.article-subtitle {	font-size: 17px;}
 .title-description { font-size: $descriptionTitleFontSize; }
 
 .list-title {
@@ -71,10 +73,11 @@ ol.decimal {
 	max-width: $pageMaxWidth;
 	margin: 0 auto;
 	box-sizing: border-box;
-}
-.contentWrapper {
 	overflow: hidden;
 }
+/* .contentWrapper {
+	overflow: hidden;
+} */
 .page {
 	background-color: $mainBackgroundColor;
 	// background-image: url('../img/city-background.svg');
@@ -122,6 +125,12 @@ ol.decimal {
 	z-index: -100;
 }
 
+.slick-slide, .slick-slide:focus {outline: none;}
+
+.shadow {
+  box-shadow: 0 1px 2px 0 #E3E3E3;
+}
+
 // ---------Position--------
 .relative {position: relative;}
 .absolute {position: absolute;}
@@ -139,9 +148,7 @@ ol.decimal {
 
 // =========Buttons, inputs, links======
 
-.closeIcon {
-	display: none;
-}
+.closeIcon {	display: none;}
 
 button.active {
 	.openIcon {display: none;}
@@ -255,17 +262,16 @@ ul.js_warning-list {
 /* ======Media Queries===== */
 
 @media (min-width: 991px) {
-	.page-title {
-		font-size: $titleFontSizeLaptop;
-	}
-	.section-title {
-		font-size: $sectionTitleFontSizeLaptop;
-	}
+	.page-title {	font-size: $titleFontSizeLaptop;}
+	.section-title {	font-size: $sectionTitleFontSizeLaptop;	}
+	.article-title { font-size: $articleTitleFontSizeLaptop; }
+
 }
 
 
 @media (min-width: 1279px) {
-	.section-title {
-		font-size: $sectionTitleFontSizeDesktop;
-	}
+	.page-title {	font-size: $titleFontSizeDesktop;}
+	.section-title {font-size: $sectionTitleFontSizeDesktop;}
+	.article-title { font-size: $articleTitleFontSizeDesktop; }
+
 }

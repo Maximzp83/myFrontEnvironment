@@ -7,7 +7,8 @@
 	border: 1px solid;
 	line-height: $standardButtonHeight - 2px;
 	text-decoration: none;
-	
+	border-radius: 3px;
+
 	&:hover {text-decoration: none;}
 }
 
@@ -44,8 +45,8 @@ ul.breadcrumbs {
 		}
 
 		&.active a {
-			// color: $descriptionTextColor;
-			opacity: 0.5;
+			color: $primaryColor;
+			// opacity: 0.5;
 			&:hover {text-decoration: none;}
 		}
 
@@ -168,7 +169,96 @@ ul.breadcrumbs {
 	&:after {
 		left: calc(100% - 8px);
 	}
+}
 
+// ------Chosen------
+.chosen-wrapper {
+	.chosen-container-single {
+		.chosen-default {
+			border-color: $formElementsBorderColor;
+		}
+	}	
+}
+
+// --------Animation----------------
+@keyframes slideToTop {
+	0% { transform: translateY(25px); /* opacity:0; */	}
+	100% { transform: translateY(0);	/* opacity:1; */	}
+}
+
+.list-top-animation {
+	& > div {
+		visibility: hidden;
+		opacity: 0;
+		// transition: all 0.9s;
+	}
+
+	&.js_animate {
+		& > div {
+			transition: opacity 0.7s;
+			opacity: 1;
+			visibility: visible;
+			animation-iteration-count: 1;
+			animation-fill-mode: forwards;
+			animation: slideToTop 0.4s ease;
+		}
+	}
+}
+
+.fade-animation {
+	& > div {
+		visibility: hidden;
+		opacity: 0;
+		// transition: all 0.9s;
+	}
+
+	&.js_animate {
+		& > div {
+			transition: opacity 0.3s ease-out;
+			opacity: 1;
+			visibility: visible;
+			// animation-iteration-count: 1;
+			// animation-fill-mode: forwards;
+			// animation: slideToTop 0.4s ease;
+		}
+	}
+}
+
+// --------Ellip plugin-------
+.box {
+  // height: 4.5em;
+  // background: #eee;
+  // border: 1px solid #ccc;
+  // padding: 0.5em 1em;
+  // margin-right: 30px;
+  // margin-bottom: 30px;
+  overflow: hidden;
+  // float: left;
+  display: block;
+}
+
+.box--fixed {
+  max-width: 205px;
+}
+
+/* necessary plugin styles */
+.js_ellip {
+  display: block;
+  height: 100%;
+}
+
+.js_ellip-line {
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.js_ellip,
+.js_ellip-line {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 
@@ -261,9 +351,9 @@ ul.breadcrumbs {
 .description {
 	// margin-top: 10px;
 
-	.icomoon {
-		color: $subDescriptionColor;
-	}
+	.icomoon {color: $subDescriptionColor;}
+
+	i {font-style: italic;}
 
 	* + .link-with-icon {margin-top: 10px;}
 	.link-with-icon + * {margin-top: 15px;}
@@ -277,6 +367,8 @@ ul.breadcrumbs {
 	p {
 		font-size: $descriptionFontSize;
 		line-height: $descriptionLineHeight;
+		font-family: $tertiaryFont;
+		color: $descriptionTextColor;
 
 		&.sub-description {
 			font-size: 12px;
@@ -319,10 +411,26 @@ ul.breadcrumbs {
 }
 
 
+.inner-icon {
+	position: absolute;
+	top: 50%!important;
+	transform: translateY(-50%)!important;
+
+	&.left {left: 8px;}
+	&.right {right: 8px;}
+}
+
+
 // ======Media=========
 @media (min-width: 767px) {
 	.main-video-wrapper {
 		padding-bottom: 45%;
+	}
+
+	.description {
+		ul, ol {
+			padding-left: 20px;
+		}
 	}
 
 	// ---------
@@ -340,6 +448,25 @@ ul.breadcrumbs {
 	.backgroundMock {
 		&:before { right: calc(100% - 15px); }
 		&:after {	left: calc(100% - 15px); }
+	}
+
+	// ------------
+	.sticky {
+		position: relative;
+		& > div {
+			transition: all 0.5s;	
+		}
+		
+		.js_fixed_nav {
+			position: fixed;
+			top: 136px;
+			bottom: unset;
+		}
+		.js_absolute_nav {
+			position: absolute;
+			top: unset;
+			bottom: 8px;
+		}
 	}
 
 }

@@ -8,8 +8,8 @@ glob.PopupModule = (function () {
 
   function toggleShow(event, popupBlock) {
     var popup = globFunc.returnDOM(popupBlock);
-    // console.log('event,')
-    if ( event.propertyName == 'opacity' ) {
+
+    if ( event.propertyName == 'transform' ||  event.propertyName == 'opacity') {
       popup.classList.contains('js_animate') ? null : popup.classList.remove('js_open');
     }
   }
@@ -43,12 +43,14 @@ glob.PopupModule = (function () {
     var popup = globFunc.returnDOM(popupBlock);
     
     popup.classList.remove("js_animate");
+    // popup.classList.remove("js_open");
     // additionalClass ? hideOverlay("popup", overlay, additionalClass) : hideOverlay("popup", overlay);
   }
 
   // -------Events--------  
 
-  $('body').on('click', '#pageOverlay', function() {
+  $('body').on('click', '#pageOverlay', function(e) {
+    // console.log(e)
     globFunc.hideOverlay("popup", this, additionalClassStr);
 
     if (modals) {
@@ -59,11 +61,14 @@ glob.PopupModule = (function () {
   });
    
   $('body').on('click', 'button.popupCloseButton', function() {
+    // console.log('ok')
+
     closePopup( $(this).closest('.popup') );
     globFunc.hideOverlay("popup", pageOverlay, additionalClassStr);
   });
 
-  $('body').on('click', '.popup', function(e) {
+  $('body').on('mousedown', '.popup', function(e) {
+    // console.log(e.target)
     if (e.target.classList.contains('popup')) {
       closePopup( e.target );
       globFunc.hideOverlay("popup", pageOverlay, additionalClassStr);

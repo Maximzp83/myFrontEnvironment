@@ -1,14 +1,17 @@
 glob.AccordionModule  = (function() {
-	console.log('AccordionModule ok');
+	// console.log('AccordionModule ok');
 	
 	function toggleContent(options, button, targetBlock, allTargetBlocks) {
-		let subMenuParent = button ? findParentWrapper(button, 'menuWrapper') : null;
+		let subMenuParent = button ? findParentWrapper(button, 'submenuWrapper') : null;
 		let targetHeight = targetBlock ? targetBlock.firstElementChild.offsetHeight : null;
 
+			// console.log(subMenuParent)
 		function findParentWrapper(element, searchClass) {
-			let finded = false;
-			let currentElement = element, findingElement = null;
 
+			var finded = false;
+			var currentElement = element, findingElement = null;
+
+			// console.log(currentElement)
 			while(!finded) {
 
 				if ( currentElement.parentElement.classList.contains(searchClass) ) { 

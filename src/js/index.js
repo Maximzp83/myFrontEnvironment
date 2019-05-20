@@ -4,11 +4,12 @@ function cl(arg1, arg2, arg3, arg4) {
 	return '-';
 }
 
-cl(status);
+// cl(status);
 
 
 var glob = {
-	
+	header: null,
+	scrollTopButton: null,
 }
 
 // =================
@@ -34,13 +35,26 @@ $(document).ready(function() {
   /*@@include('frames/SwitchTabsModule.js')*/
   /*@@include('frames/TextLimitModule.js')*/
   /*@@include('frames/StickyBlockModule.js')*/
+  /*@@include('frames/textLinesLimitPlugin.js')*/
+  /*@@include('frames/LazyLoadModule.js')*/
 
  
 	// =============================================================
 
 
-	if ($('body')) {console.log('jQuery OK')}
-	console.log(test);
+	if (!$('body')) {console.log('jQuery Error')}
+	// console.log(test);
+
+	$('.mainHeader').on('click', '.menu-button', function(e) {
+		globFunc.toggleButtonContent(this)	
+	})
+
+	$('.mainHeader').on('blur', '.menu-button', function() {
+		// console.log('blur')
+		if (this.classList.contains('active')) {
+			globFunc.toggleButtonContent(this)			
+		}
+	})
 
 
   // ---------Popups Block-------
@@ -94,6 +108,16 @@ $(document).ready(function() {
 		}, 500);
 	})*/
 
+	// ---------- Sticky block---------------
+	/*var stickyAsideBlock = document.querySelector('aside.sticky');
+
+	if ( stickyAsideBlock && document.documentElement.clientWidth > 991 ) {
+		var targetStickBlock = stickyAsideBlock.firstElementChild;
+		let relativeBlock = document.getElementById(stickyAsideBlock.dataset.stickTo)
+
+		glob.StickyBlockModule.toStick(targetStickBlock, relativeBlock);		
+	}*/
+
 
 
 	// ===========Initializations=============
@@ -112,4 +136,6 @@ $(document).ready(function() {
 window.onload = function() {
 	console.log('window load')
 	// $('#page-preloader').fadeOut('slow');
+
+	// glob.LazyLoadModule.initLazy('lazyBlock')
 }

@@ -18,7 +18,8 @@
     "url": "https://github.com/Maximzp83/myFrontEnvironment/issues"
   },
   "dependencies": {
-    "gulp-install": "^1.1.0"
+    "gulp-install": "^1.1.0",
+    "uglify-js": "github:mishoo/UglifyJS2#harmony"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.4",

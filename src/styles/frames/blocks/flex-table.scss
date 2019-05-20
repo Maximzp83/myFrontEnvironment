@@ -1,94 +1,72 @@
-.table {
+.flex-table {
+	border-top: 1px solid $borderColor;
+	border-right: 1px solid $borderColor;
 
 	.tableRow {
-		border-bottom: 1px solid $tertiaryColor;
-		padding: 0 10px;
+		// display: flex;
+
+		border-bottom: 1px solid $borderColor;
+		// padding: 0 10px;
+	}
+
+	.tableHead {
+		display: none;
+		.tableCell {
+			// font-weight: bold;
+			font-family: $titleFont;
+			font-size: 12px;
+			text-transform: uppercase;
+		}
 	}
 
 	.tableCell {
-		// margin: 5px 0;
-		padding: $articleMarginMobile / 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		box-sizing: border-box;
-		flex-grow: 0;
-		overflow-x: auto;
+		padding: 10px;
+		border-left: 1px solid $borderColor;
+		font-size: 12px;
 
-		.title {
-			margin-top: 10px;
-			margin-bottom: 10px;
-		}
-	}
+		& > div {width: 100%;}
 
-	.cellContent {
-		box-sizing: border-box;
-		padding: 10px 0;
-		display: table;
-		vertical-align: middle;
 
 		& > span {
-			display: table-cell;
+			// display: table-cell;
 			vertical-align: middle;
-			padding-left: 5px;
 		}
-		
-	}
-
-	a {
-		text-decoration: underline;
-		height: 100%;
-    display: inline-block;
-
-		&:hover {text-decoration: none;}
 	}
 
 
 	@media (min-width: 991px) {
+
+		.tableHead {display: block;}
+
 		.tableRow {
-			flex-wrap: nowrap;
-
-			&:nth-child(n+2) {
-				.title {display: none!important;}
-			} 		
-		}
-
-		.tableCell {
 			display: flex;
-			flex-direction: column;
-			flex-grow: 1;
-			border-right: 1px solid rgba(0, 0, 0, 0.2); 
-
-			& + .tableCell {
-				.title {
-					margin-bottom: 10px;
-				}
-
-				& > .cellContent{
-					margin: auto 0;
-				}
-
-				& > div {
-					padding-left: 5px!important;
-				}
-			}
-
-			&:last-child {
-				border: none;
-			}
-
+					
+			// &:nth-child(n+2) {
+				.cellTitle {display: none!important;}
+			// } 		
 		}
+		
+		.tableCell {
+		
+		} 
 	}
 
 
 	@media (min-width: 1279px) {
-		.tableCell {
-
-				& + .tableCell {
-
-					& > div {
-						padding-left: 15px!important;
-					}
+		/* .tableCell {
+		
+			& + .tableCell {
+		
+				& > div {
+					padding-left: 15px!important;
 				}
-
 			}
+		
+		} */
 	}
 
 }

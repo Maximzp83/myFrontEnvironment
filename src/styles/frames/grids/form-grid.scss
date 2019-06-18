@@ -1,4 +1,16 @@
 .standard-form {
+	.form-section-title {
+		font-size: 20px;
+		// font-weight: 500;
+	}
+	.form-section {
+		& + .form-section {
+			padding-top: 30px;
+			margin-top: 30px;
+			border-top: 1px solid $borderColor;
+		}
+	}
+
 	label,
 	.label {
 		display: block;
@@ -17,14 +29,15 @@
 	.form-title {
 		font-family: $secondaryFont;
 		font-size: $formTitleFontSize;
-		margin-bottom: 15px;
+		// margin-bottom: 15px;
+		& + * {margin-top: 15px;}
 	}
 
 	.formRow {
 		input + input {margin-top: 25px;}
 		select + select {margin-top: 25px;}
 
-		&.flex {flex-direction: column;}
+		// &.flex {flex-direction: column;}
 
 		.formBlock {
 			box-sizing: border-box;
@@ -82,7 +95,7 @@
 			top: 35%;
 			transform: rotate(90deg);
 			font-size: 16px;
-			color: $thirdFontColor;
+			// color: $thirdFontColor;
 			transition: transform 0.4s;
 		}
 	
@@ -90,13 +103,13 @@
 
 
 	@media (min-width: 767px) {
-		.formRow {
+		/* .formRow {
 			&.flex {flex-direction: row;}
-
+		
 			.formBlock {
 				flex-basis: 50%;
 			}
-		}
+		} */
 
 		.formBlock + .formBlock {
 			margin-top: 0;

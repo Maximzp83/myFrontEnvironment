@@ -1,5 +1,34 @@
-.quantity {
+.quantity-input {
   position: relative;
+  display: flex;
+  align-items: center;
+  width: 80px;
+  font-size: 14px;
+
+  input {
+    margin: 0 3px;
+    border: 0;
+    height: 32px;
+    padding: 0 2px;
+    width: 20px;
+    text-align: center;
+    font-weight: 500;
+    font-family: $mainFont;
+    &:focus {  outline: 0; }
+  }
+
+
+  .quantity-button {
+    user-select: none;
+    height: 22px;
+    width: 22px;
+    border: 1px solid $borderColor;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 23px;
+    cursor: pointer;
+  }
+
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -14,24 +43,6 @@ input[type=number]
   -moz-appearance: textfield;
 }
 
-.quantity input {
-  width: 130px;
-  height: 36px;
-  // line-height: 1.65;
-  font-size: $large;
-  float: left;
-  display: block;
-  padding: 0 36px;
-  margin: 0;
-  text-align: center;
-  border: 1px solid $bordersColor;
-  transition: border 0.3s linear;
-}
-
-.quantity input:focus {
-  outline: 0;
-  border-color: $primaryColor;
-}
 
 .quantity-nav {
   // float: left;
@@ -39,39 +50,11 @@ input[type=number]
   height: 36px;
 }
 
-.quantity-button {
-  position: absolute;
-  height: 100%;
-  top: 0;
-  cursor: pointer;
-  width: 36px;
-  font-size: 13px;
-  // transform: translateX(-100%);
-  user-select: none;
-  background-color: $fourthColor;
-  border: 1px solid $bordersColor;
-  box-sizing: border-box;
-
-  &:hover {background-color: #fbfbfb;}
-
-  &:after {
-    content: ''; 
-    position: absolute;
-    // border: 4px solid transparent;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: url("../img/icons/left-arrow.svg") center no-repeat;
-    background-size: contain;
-    display: inline-block;
-    width: 17px;
-    height: 17px;
-  }
-}
 
 .quantity-button.quantity-up {
   right: 0;
-  transform: scaleX(-1);
+  font-size: 12px;
+  // transform: scaleX(-1);
 }
 .quantity-button.quantity-down {
   left: 0;

@@ -15,6 +15,7 @@
     position: relative;
 
     & > span {
+      display: table-cell;
       margin-left: 12px;
       vertical-align: middle;
     }
@@ -29,9 +30,11 @@
     width: 16px;
     background-color: #fff;
     border: 1px solid #e2e2e2;
+    transition: all 0.2s;
+
   }
 
-  input[type="checkbox"]:checked + label::after {
+  input[type="checkbox"] + label::after {
     content: "";
     position: absolute;
     width: 9px;
@@ -43,6 +46,22 @@
     border-top: none;
     border-right: none;
     transform: rotate(-45deg);
+    transition: all 0.2s;
+
+  }
+
+  input:checked + label::after {
+    border-color: $primaryColor;
+  }
+
+  &.inverted {
+    input[type="checkbox"]:checked + label::before {
+      border-color: $primaryColor;
+      background-color: $primaryColor;
+    }
+    input[type="checkbox"]:checked + label::after {
+      border-color: #fff;
+    }
   }
 
   // ----Radio------

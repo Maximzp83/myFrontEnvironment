@@ -8,7 +8,10 @@ function cl(arg1, arg2, arg3, arg4) {
 
 
 var glob = {
-	header: null,
+	navMenuWrapper: null,
+	navMenu: null,
+	pageOverlay: null,
+
 	scrollTopButton: null,
 }
 
@@ -35,12 +38,14 @@ $(document).ready(function() {
   /*@@include('frames/SwitchTabsModule.js')*/
   /*@@include('frames/TextLimitModule.js')*/
   /*@@include('frames/StickyBlockModule.js')*/
-  /*@@include('frames/textLinesLimitPlugin.js')*/
   /*@@include('frames/LazyLoadModule.js')*/
-
+  /*@@include('frames/OpenCloseModule.js')*/
+  /*@@include('frames/RadioOpenCloseModule.js')*/
  
 	// =============================================================
-
+	glob.navMenuWrapper = document.getElementById('navMenuWrapper');
+	glob.navMenu = document.getElementById('navMenu');
+	glob.pageOverlay = document.getElementById('pageOverlay');
 
 	if (!$('body')) {console.log('jQuery Error')}
 	// console.log(test);
@@ -97,6 +102,8 @@ $(document).ready(function() {
   // ---------Text Limit-------
 	/*let textBlocks = document.querySelectorAll('.selector');
 	textBlocks.length ? TextLimitModule.sliceText(textBlocks, 180) : null;*/
+	$(".description .ellipsis").dotdotdot({	height: 80,	truncate: "word",	watch: true});
+	$(".title.ellipsis").dotdotdot({	height: 85,	truncate: "word",	watch: true});
 	
 
 	// ----------Scroll-to Section---------------
@@ -117,6 +124,22 @@ $(document).ready(function() {
 
 		glob.StickyBlockModule.toStick(targetStickBlock, relativeBlock);		
 	}*/
+
+	// ---------Clean empty Tags-----
+	var textBlocks = document.querySelectorAll('.description > p');
+
+	if (textBlocks.length) {
+		for (var i = 0; i < textBlocks.length; i++) {
+			textBlocks[i].innerHTML ? null : textBlocks[i].parentElement.removeChild(textBlocks[i]);
+		}
+	}
+
+	// -------Select----------
+	/*$(".chosen-wrapper select").chosen({
+	  disable_search_threshold: 8,
+	  no_results_text: "Ничего не найдено!",
+	  width: "100%"
+	});*/
 
 
 

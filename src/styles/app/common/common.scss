@@ -7,7 +7,7 @@ body {
 body.js_pageOverlayOpen {	overflow: hidden;}
 
 b,strong { font-weight: bold; }
-i {font-style: italic;}
+// i {font-style: italic;}
 
 // h1 { font-size: $h1FontSize; }
 // h2 { font-size: $h2FontSize; }
@@ -33,16 +33,14 @@ ol.decimal {
 .text-center {text-align: center;}
 .bold {font-weight: 700;}
 .semi-bold {font-weight: 600; }
+.medium {font-weight: 500;}
 .light {font-weight: 300; }
 .ultra-light {font-weight: 200;}
-
-.relative {position: relative;}
 
 .primaryColor {color: $primaryColor!important;}
 
 
 .title {
-	font-weight: 700;
 	font-family: $titleFont;
 	& + * {	margin-top: 15px;	}
 }
@@ -80,6 +78,8 @@ ol.decimal {
 } */
 .page {
 	background-color: $mainBackgroundColor;
+	padding-bottom: 50px;
+
 	// background-image: url('../img/city-background.svg');
 	// background-repeat: no-repeat;
 	// background-position-y: bottom;
@@ -185,6 +185,8 @@ select {
 	padding: 1px 12px;
 	width: 100%;
 	// border-radius: 3px;
+	&::placeholder {color: $descriptionTextColor;}
+
 }
 textarea {
 	padding: 10px 12px;
@@ -198,7 +200,7 @@ select,
 a {
 	// cursor: pointer;
 	font-size: inherit;
-	transition: all ease 0.4s;
+	transition: all ease $formTransitions;
 }
 
 input, select {
@@ -215,6 +217,15 @@ input, select {
 // 		width: 90%;
 // 	}
 // }
+
+.shadowInput { 
+	border-color: $primaryColor;
+	// border-width: 2px;
+
+	&:focus {
+		box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);					
+	}
+}
 
 a {
 	text-decoration: none;
@@ -233,11 +244,14 @@ span.showButton {display: inline-block;}
 
 .row-with-icon,
 .link-with-icon {
-	display: flex;
+	transition: none;
+	display: flex!important;
 	align-items: center;
-	span, a {
+	span, a, div {
 		flex-basis: 80%;
 	}
+
+	span {transition: all $linksTransition;}
 }
 
 [data-validate] {

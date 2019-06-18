@@ -1,5 +1,5 @@
 glob.ToggleContentModule  = (function() {
-	console.log('ToggleContentModule ok');
+	// console.log('ToggleContentModule ok');
 	// console.time('ToggleContent Module load');
 
 	function toggleContent(buttonElement, data) {
@@ -8,26 +8,14 @@ glob.ToggleContentModule  = (function() {
 				targets = data.targets,
 				thisTarget = data.thisContent,
 				targetButtons = data.targetButtons,
-
 				targetsReverse = data.targetsReverse;
 
-			// console.log(thisTarget)
+			// console.log(data)
 
 		
 		// ------Methods--------
 
-		function scale(button, targetBlock, action) {
-			if (action === 'show' ) {
-				button.checked || button.classList.contains('active') ? 
-					targetBlock.classList.add('js_showScale') : targetBlock.classList.remove('js_showScale');
-			} else {
-				button.checked || button.classList.contains('active') ? 
-				targetBlock.classList.add('js_hideScale') : targetBlock.classList.remove('js_hideScale');
-			}
-		}
-
 		function dropDown(button, targetBlock, action, buttonsElements) {
-			// console.log(targetBlock)
 			if (action === 'show' ) {
 				button.checked || button.classList.contains('active') ? 
 				targetBlock.style.height = targetBlock.firstElementChild.offsetHeight + 'px' :
@@ -41,26 +29,13 @@ glob.ToggleContentModule  = (function() {
 			}
 		}
 
-		function slideLeft(button, targetBlock, action, buttonsElements) {
-			// console.log(targetBlock)
+		function showHide(button, targetBlock, action, cssShowClass, cssHideClass) {
 			if (action === 'show' ) {
 				button.checked || button.classList.contains('active') ? 
-				targetBlock.style.left =  "0%" : targetBlock.style.left = "100%";
-			}	else if (action === 'hideReverse') {
-				button.checked || button.classList.contains('active') ? 
-				targetBlock.style.left =  "100%" : targetBlock.style.left = "0%";
-			} else {
-				targetBlock.style.left = "100%";
-			}
-		}
-
-		function showHide(button, targetBlock, action) {
-			if (action === 'show' ) {
-				button.checked || button.classList.contains('active') ? 
-					targetBlock.classList.add('js_show') : targetBlock.classList.remove('js_show');
+					targetBlock.classList.add(cssShowClass) : targetBlock.classList.remove(cssShowClass);
 			} else {
 				button.checked || button.classList.contains('active') ?
-					targetBlock.classList.add('js_hide') : targetBlock.classList.remove('js_hide');
+					targetBlock.classList.add(cssHideClass) : targetBlock.classList.remove(cssHideClass);
 			}	
 		}
 
@@ -74,12 +49,14 @@ glob.ToggleContentModule  = (function() {
 		}
 
 		function toggle(targetBlocks, action) {
+			// console.log(targetBlocks)
 			for (let i = 0; i < targetBlocks.length; i++) {
 				switch (buttonData.menuType || 'default') {
-					case 'scale': scale( button, targetBlocks[i], action ); break;
+					case 'scale': showHide( button, targetBlocks[i], action, 'js_showScale', 'js_hideScale' ); break;
 					case 'drop-down': dropDown( button, targetBlocks[i], action ); break;
-					case 'drop-left': slideLeft( button, targetBlocks[i], action ); break;
-					case 'show-hide': showHide( button, targetBlocks[i], action ); break;
+					case 'drop-left': showHide( button, targetBlocks[i], action, 'js_showSlide_left', 'js_hideSlide_left'); break;
+					case 'drop-right': showHide( button, targetBlocks[i], action, 'js_showSlide_right', 'js_hideSlide_right'); break;
+					case 'show-hide': showHide( button, targetBlocks[i], action, 'js_show', 'js_hide' ); break;
 
 					default: console.error('no correct "data-menu-type" attribute is set to the button element in HTML!');
 				}						
@@ -96,16 +73,11 @@ glob.ToggleContentModule  = (function() {
 			break;
 
 			case 'accordion': 
-				toggle(targetsReverse, 'hide');
-				cleanButtons(targetButtons);
-				toggle(thisTarget, 'show');
-			break;
-
-			case 'radio': 
-				for (let i = 0; i < targets.length; i++) {
-					targets[i].classList.contains(button.name) ? toggle(targets[i], "hide") : null;
-					toggle(targets[i], 'show');				      
+				if (buttonData.siblings == 'yes') {
+					toggle(targetsReverse, 'hide');
+					cleanButtons(targetButtons);
 				}
+				toggle(thisTarget, 'show');
 			break;
 
 			default: console.error('no correct "data-button-type" attribute is set to the button element in HTML!');
@@ -114,8 +86,6 @@ glob.ToggleContentModule  = (function() {
 	}
 
 	// --------------------------------------------
-
-	
 
 	function targetsForAction(buttonElement, buttonData) {
 		let targetsForActionId = buttonData.target ? buttonData.target.split(' ') : null,
@@ -194,15 +164,15 @@ glob.ToggleContentModule  = (function() {
 			// --------Actions/Events--------
 
 			if (buttonData.buttonType === "menuButton") {
-				toggleButtonContent(this);
+				globFunc.toggleButtonContent(this);
 				this.classList.contains('active') ? 
-				PopupModule.showOverlay("menu", pageOverlay) : 
-				PopupModule.hideOverlay("menu", pageOverlay);
+					globFunc.showOverlay("menu", glob.pageOverlay) : 
+					globFunc.hideOverlay("menu", glob.pageOverlay);
 
 				toggleContent(this, targetContentData);
 
 			} else {
-				toggleButtonContent(this);
+				globFunc.toggleButtonContent(this);
 				toggleContent(this, targetContentData);				
 			}
 

@@ -224,43 +224,6 @@ ul.breadcrumbs {
 	}
 }
 
-// --------Ellip plugin-------
-.box {
-  // height: 4.5em;
-  // background: #eee;
-  // border: 1px solid #ccc;
-  // padding: 0.5em 1em;
-  // margin-right: 30px;
-  // margin-bottom: 30px;
-  overflow: hidden;
-  // float: left;
-  display: block;
-}
-
-.box--fixed {
-  max-width: 205px;
-}
-
-/* necessary plugin styles */
-.js_ellip {
-  display: block;
-  height: 100%;
-}
-
-.js_ellip-line {
-  display: inline-block;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  word-wrap: normal;
-}
-
-.js_ellip,
-.js_ellip-line {
-  position: relative;
-  overflow: hidden;
-  max-width: 100%;
-}
-
 
 // ----------Hidden Blocks----------
 
@@ -276,36 +239,47 @@ ul.breadcrumbs {
 	z-index: $darkOverlayZIndex;
 }
 
-.hiddenContent.height {
-	height: 0;
-	overflow: hidden;
-	transition: height 0.4s ease-out;
-}
-.hiddenContent.right {
-	// width: 0;
-	// overflow: hidden;
-	right: 0;
-	transform: translateX(100%);
-	transition: transform 0.4s ease-out;
-}
+.hiddenContent {
+	transition: all $animationTransitions ease-out;
 
-.hiddenContent.scale {
-	transform: scaleY(0);
-	transform-origin: 0 0;
-	transition: transform 0.3s;
-
-	&.opacityAnimate > div {
-		opacity: 0;
-		transition: opacity 0.2s ease-in-out 0.15s;
+	&.height {
+		height: 0;
+		overflow: hidden;
+	}
+	
+	&.right {
+		right: 0;
+		transform: translateX(100%);
+	}
+	&.left {
+		left: 0;
+		transform: translateX(-100%);
+	}
+	.top {
+		top: 0;
+		transform: translateY(-100%);
 	}
 
-	&.opacityAnimate:not(.js_openScale) {
-		transition-delay: 0.1s;
-		& > div {
-			transition-delay: 0s;
+	&.scale {
+		transform: scaleY(0);
+		transform-origin: 0 0;
+
+		&.opacityAnimate > div {
+			opacity: 0;
+			transition: opacity 0.2s ease-in-out 0.15s;
+		}
+
+		&.opacityAnimate:not(.js_openScale) {
+			transition-delay: 0.1s;
+			& > div {
+				transition-delay: 0s;
+			}
 		}
 	}
+
+	&.hide {	display: none;}
 }
+
 
 .js_hideScale {
 	transform: scaleY(0)!important;
@@ -320,6 +294,7 @@ ul.breadcrumbs {
 
 .js_hide {display: none !important;}
 .js_show {display: block !important;}
+.js_showSlide {transform: translate(0)!important;}
 
 .toggleBlock {
 	display: none;
@@ -398,6 +373,7 @@ ul.breadcrumbs {
 
 		& + p {margin-top: 25px;}
 	}
+	i {font-style: italic;}
 
 	&.page-description {
 		margin-top: 25px;
@@ -420,6 +396,10 @@ ul.breadcrumbs {
 	&.right {right: 8px;}
 }
 
+.map-wrapper {
+	.map {padding-top: 90%;}
+}
+
 
 // ======Media=========
 @media (min-width: 767px) {
@@ -434,7 +414,9 @@ ul.breadcrumbs {
 	}
 
 	// ---------
-
+	.map-wrapper {
+		.map {padding-top: 70%;}
+	}
 }
 
 @media (min-width: 991px) {
@@ -446,8 +428,8 @@ ul.breadcrumbs {
 	}
 
 	.backgroundMock {
-		&:before { right: calc(100% - 15px); }
-		&:after {	left: calc(100% - 15px); }
+		&:before { right: calc(100% - $containerPaddingDesktop); }
+		&:after {	left: calc(100% - $containerPaddingDesktop); }
 	}
 
 	// ------------
@@ -469,4 +451,14 @@ ul.breadcrumbs {
 		}
 	}
 
+	.map-wrapper {
+		.map {padding-top: 50%;}
+	}
+
+}
+
+@media (min-width: 1279px) {
+	.map-wrapper {
+		.map {padding-top: 500px;}
+	}
 }

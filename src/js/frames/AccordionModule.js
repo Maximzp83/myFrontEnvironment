@@ -2,25 +2,32 @@ glob.AccordionModule  = (function() {
 	// console.log('AccordionModule ok');
 	
 	function toggleContent(options, button, targetBlock, allTargetBlocks) {
-		let subMenuParent = button ? findParentWrapper(button, 'submenuWrapper') : null;
+		let subMenuParents = button ? findAllParents(button, 'submenuWrapper') : null;
 		let targetHeight = targetBlock ? targetBlock.firstElementChild.offsetHeight : null;
 
-			// console.log(subMenuParent)
-		function findParentWrapper(element, searchClass) {
+		// console.log(subMenuParents)
 
+		function findAllParents(element, searchClass) {
 			var finded = false;
-			var currentElement = element, findingElement = null;
+			var currentElement = element, findingElements = [];
+			try {
+				while(!finded) {
+				// console.log(currentElement.parentElement)
+					var parent = currentElement.parentElement;
+
+					if ( parent.classList.contains(searchClass) ) {
+						findingElements.push(parent);
+					} else if (parent.classList.contains('mainSubmenuWrapper')) {
+						finded = true;
+						findingElements.push(currentElement.parentElement);
+						break;
+					} else if (parent.classList.contains('accordionMenu')) break;
+					currentElement = parent;
+				}				
+			} catch(error) {console.log(error)}
 
 			// console.log(currentElement)
-			while(!finded) {
-
-				if ( currentElement.parentElement.classList.contains(searchClass) ) { 
-					findingElement = currentElement.parentElement;
-					finded = true;
-				} else if (currentElement.parentElement.classList.contains('accordionMenu')) break;
-				currentElement = currentElement.parentElement;
-			}
-			return findingElement;
+			return findingElements;
 		}
 
 		function resetDropDown(targetElements) {
@@ -29,7 +36,6 @@ glob.AccordionModule  = (function() {
 				targetElements[i].style.height = "";
 			}
 		}
-
 
 		function closeSiblings(button, targetElements) {
 			for (let i = 0; i < targetElements.length; i++) {
@@ -42,18 +48,19 @@ glob.AccordionModule  = (function() {
 			}
 		}
 
-		function dropDown(button, targetElement, subMenuParent) {
+		function dropDown(button, targetElement, subMenuParents) {
 			if ( button.checked || button.classList.contains('active') ) {
-				if (subMenuParent) {
-					subMenuParent.style.height = subMenuParent.offsetHeight + targetHeight + 'px';
+				if (subMenuParents.length) {
+					for (var i = 0; i < subMenuParents.length; i++) {
+						subMenuParents[i].style.height = subMenuParents[i].offsetHeight + targetHeight + 'px';
+					}
 				}
 				targetElement.style.height = targetHeight + 'px'
 			} else {			 
 				targetElement.style.height = "0px";
-				if (subMenuParent) {
-					subMenuParent.style.height =  subMenuParent.offsetHeight - targetHeight + 'px';
+				for (var i = 0; i < subMenuParents.length; i++) {
+					subMenuParents[i].style.height =  subMenuParents[i].offsetHeight - targetHeight + 'px';
 				}
-
 			}
 		}
 
@@ -62,13 +69,12 @@ glob.AccordionModule  = (function() {
 
 			case 'withSiblings': 
 				closeSiblings(button, allTargetBlocks);
-				dropDown(button, targetBlock, subMenuParent);
+				dropDown(button, targetBlock, subMenuParents);
 			break;
 
-			case 'withoutSiblings': dropDown(button, targetBlock, subMenuParent); break;
+			case 'withoutSiblings': dropDown(button, targetBlock, subMenuParents); break;
 
 			case 'resetDropDown': resetDropDown(allTargetBlocks); break;
-
 
 			default: console.error('no correct option typed in toggleContent function');
 
@@ -103,10 +109,6 @@ glob.AccordionModule  = (function() {
 
 	return {
 		toggleContent: toggleContent,
-		
 	}
-
-
-	
 
 })()

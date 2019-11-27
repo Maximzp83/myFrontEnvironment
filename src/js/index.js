@@ -22,9 +22,11 @@ var glob = {
 
 var test = 'include js error';
 
+// import { dropDown } from './frames/globalFunctions'
+
 $(document).ready(function() {
 	console.log('document ready')
-	
+	// console.log(dropDown)	
 	// =================Include Modules==============================
 
 	@@include('testModule.js')
@@ -50,7 +52,7 @@ $(document).ready(function() {
 	if (!$('body')) {console.log('jQuery Error')}
 	// console.log(test);
 
-	$('.mainHeader').on('click', '.menu-button', function(e) {
+	/*$('.mainHeader').on('click', '.menu-button', function(e) {
 		globFunc.toggleButtonContent(this)	
 	})
 
@@ -59,6 +61,11 @@ $(document).ready(function() {
 		if (this.classList.contains('active')) {
 			globFunc.toggleButtonContent(this)			
 		}
+	})*/
+
+	$('.dropdownButton').on('click', function() {
+		globFunc.toggleButtonContent(this)
+		globFunc.dropDown(this, glob.navMenuWrapper)
 	})
 
 
@@ -86,8 +93,12 @@ $(document).ready(function() {
 
 		if (document.documentElement.clientWidth < 992) {
 			e.stopPropagation();
-			let submenuBlock = this.nextElementSibling;
+			let submenuBlock;
 			let button = this;
+
+			this.classList.contains('sidebarOpenButton') ? 
+				submenuBlock = this.parentElement.nextElementSibling : 
+				submenuBlock = this.nextElementSibling;
 
 		// let siblingsBlocks = document.querySelectorAll('#publicInfoPage article.publicInfo-block .titleBlock + .hiddenContent');
 

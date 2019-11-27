@@ -1,0 +1,81 @@
+b,strong { font-weight: bold; }
+// i {font-style: italic;}
+
+// h1 { font-size: $h1FontSize; }
+// h2 { font-size: $h2FontSize; }
+// h3 { font-size: $h3FontSize; }
+
+img {width: 100%;}
+a > img {display: table;}
+
+ul.disc {
+	list-style-type: disc;
+	padding-left: 20px;
+}
+ol.decimal {
+	list-style-type: decimal;
+	padding-left: 20px;
+}
+
+.icomoon + span {margin-left: 5px;}
+
+.capitalize { text-transform: capitalize; }
+.uppercase { text-transform: uppercase; }
+.text-right {text-align: right;}
+.text-center {text-align: center;}
+.bold {font-weight: 700;}
+.semi-bold {font-weight: 600; }
+.medium {font-weight: 500;}
+.light {font-weight: 300; }
+.ultra-light {font-weight: 200;}
+
+.primaryColor {color: $primaryColor!important;}
+
+
+.title {
+	font-family: $titleFont;
+	& + * {	margin-top: 15px;	}
+}
+
+.sub-title {
+	margin-top: 10px;
+	font-size: 0.6em;
+}
+.page-title {	font-size: $pageTitleFontSize; }
+.section-title { font-size: $sectionTitleFontSize; }
+.sectionBlock-title {	font-size: $sectionBlockTitleFontSize; }
+.article-title { font-size: $articleTitleFontSize; }
+.article-subtitle {	font-size: 17px;}
+.title-description { font-size: $descriptionTitleFontSize; }
+
+.category-page-title {
+	font-size: 16px; font-weight: 600;
+	color: $fifthColor;
+}
+
+.list-title {
+	& + ul,
+	& + ol {margin: 10px 0 0 0;}
+
+	&.label {
+		& + ul,
+		& + ol {margin: 0 0 0 10px;}
+	}
+}
+
+/* ======Media Queries===== */
+
+@media (min-width: 991px) {
+	.page-title {	font-size: $pageTitleFontSizeLaptop;}
+	.section-title {	font-size: $sectionTitleFontSizeLaptop;	}
+	.article-title { font-size: $articleTitleFontSizeLaptop; }
+
+}
+
+
+@media (min-width: 1279px) {
+	.page-title {	font-size: $pageTitleFontSizeDesktop;}
+	.section-title {font-size: $sectionTitleFontSizeDesktop;}
+	.article-title { font-size: $articleTitleFontSizeDesktop; }
+
+}

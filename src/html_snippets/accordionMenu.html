@@ -1,41 +1,60 @@
 <div class="mcol-xs-12 mcol-md-3 accordionMenu">
-	<div class="sidebarOpenButton accordionButton flex center" data-text="Показать меню" 						data-text-active="Скрыть меню">
+	<div class="menu-header flex center" >
 		<div class="title-container">
-			<div class="title section-title medium"><span>Показать меню</span></div>
+			<div class="title article-title medium"><span>Показать меню</span></div>
 		</div>
 
-		<div class="arrow-button-container push-right">
+		<div class="arrow-button-container push-right accordionButton sidebarOpenButton" data-text="Показать меню" 
+					data-text-active="Скрыть меню">
 			<i class="icomoon icon-arrow2"></i>
 		</div>
 	</div>
-	<div class="hiddenContent height submenuWrapper">
+	<div class="hiddenContent height submenuWrapper mainSubmenuWrapper">
 		<div class="content-container">
 			<div class="submenu-list">
 				<div class="submenu-item">
-					<div class="accordionButton flex center">
+					<div class="menu-item-container flex center">
 						<div class="title-container">
-							<div class="title section-title medium">submenu-item 1</div>
+							<div class="title article-title medium">submenu-item 1</div>
 						</div>
 
-						<div class="arrow-button-container push-right">
+						<div class="arrow-button-container push-right accordionButton">
 							<i class="icomoon icon-arrow2"></i>
 						</div>
 					</div>
 
 					<div class="hiddenContent submenuWrapper height">
 						<div class="content-container">
-							submenu-item 1 content
+							<div class="submenu-list">
+								<div class="submenu-item">
+									<div class="menu-item-container flex center">
+										<div class="title-container">
+											<div class="title medium"><a href="#" class="">submenu-item 1.1</a></div>
+										</div>
+
+										<div class="arrow-button-container push-right accordionButton">
+											<i class="fas fa-plus"></i>
+										</div>
+									</div>
+
+									<div class="hiddenContent submenuWrapper height">
+										<div class="content-container">
+											submenu-item 1.1 cont
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="submenu-item">
-					<div class="accordionButton flex center">
+					<div class="menu-item-container flex center">
 						<div class="title-container">
-							<div class="title section-title medium">submenu-item 2</div>
+							<div class="title article-title medium">submenu-item 2</div>
 						</div>
 
-						<div class="arrow-button-container push-right">
+						<div class="arrow-button-container push-right accordionButton">
 							<i class="icomoon icon-arrow2"></i>
 						</div>
 					</div>
@@ -43,6 +62,14 @@
 					<div class="hiddenContent submenuWrapper height">
 						<div class="content-container">
 							submenu-item 2 content
+						</div>
+					</div>
+				</div>
+
+				<div class="submenu-item">
+					<div class="menu-item-container flex center">
+						<div class="title-container">
+							<div class="title article-title medium">submenu-item 2</div>
 						</div>
 					</div>
 				</div>

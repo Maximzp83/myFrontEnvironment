@@ -566,7 +566,7 @@ body div.contentWrapper .no-margin {
   }
 
   .pageSection + .pageSection {
-    margin-top: $sectionMarginTopDesktop;
+    padding-top: $sectionMarginTopDesktop;
   }
 
 }

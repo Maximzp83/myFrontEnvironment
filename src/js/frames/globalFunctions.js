@@ -88,6 +88,12 @@ var globFunc = {
     }
   },
 
+  dropDown: (button, targetBlock) => {
+    button.checked || button.classList.contains('active') ? 
+    targetBlock.style.height = targetBlock.firstElementChild.offsetHeight + 'px' :
+    targetBlock.style.height = "0px";    
+  },
+
   animateBlock: function (block) {
     let self = this;
     this.removeClassFrom(block, 'js_animate');

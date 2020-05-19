@@ -2,21 +2,18 @@
 .triangle {
   position: relative;
   
-  &::before,
-  &::after {
+  &::before {
     content: ''; 
     position: absolute; 
     border: 5px solid transparent;
   }
 
-  &.on-x::before,
-  &.on-x::after {
+  &.on-x::before {
     left: 50%;
     transform: translateX(-50%);
   }
 
-  &.on-y::before,
-  &.on-y::after {
+  &.on-y::before {
     top: 50%;
     transform: translateY(-50%);
   }
@@ -34,8 +31,7 @@
   }
 
 
-  &.bottom::before,
-  &.bottom::after {
+  &.bottom::before {
     top: 100%;
     border-top: 15px solid;
     border-top-color: #000;

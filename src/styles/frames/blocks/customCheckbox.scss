@@ -51,13 +51,13 @@
   }
 
   input:checked + label::after {
-    border-color: $primaryColor;
+    border-color: $primary-color;
   }
 
   &.inverted {
     input[type="checkbox"]:checked + label::before {
-      border-color: $primaryColor;
-      background-color: $primaryColor;
+      border-color: $primary-color;
+      background-color: $primary-color;
     }
     input[type="checkbox"]:checked + label::after {
       border-color: #fff;

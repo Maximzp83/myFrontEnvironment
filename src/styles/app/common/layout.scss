@@ -1,0 +1,54 @@
+body {
+	font-size: $pageFontSize;
+	font-family: $mainFont;
+	color: $mainFontColor;
+	position: relative;
+}
+body.js_pageOverlayOpen {	overflow: hidden;}
+
+// ------
+.mainWrapper {
+	max-width: $pageMaxWidth;
+	margin: 0 auto;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+/* .contentWrapper {
+	overflow: hidden;
+} */
+.page {
+	background-color: $mainBackgroundColor;
+	// padding-bottom: 50px;
+
+	// background-image: url('../img/city-background.svg');
+	// background-repeat: no-repeat;
+	// background-position-y: bottom;
+	// background-size: auto 170px;
+	// padding: 0 0 130px 0;
+
+	.page-container {position: relative;}
+}
+
+.pageSection,
+.mcontainer {
+	background-color: inherit;
+}
+
+.pageBackgroundWrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: -50;
+	background-color: $mainBackgroundColor;
+}
+
+
+/* ======Media Queries===== */
+
+@media (min-width: 991px) {
+	.view-content {
+		padding: 25px 30px 10px;
+	}
+}

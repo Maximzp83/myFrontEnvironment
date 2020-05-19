@@ -39,7 +39,7 @@
 		& > a:hover,
 		& > button:hover {
 			// background-color: $secondaryColor;
-			color: $primaryColor;
+			color: $primary-color;
 			// font-weight: bold;
 			// border-color: $secondaryColor;
 			// transition: none;
@@ -47,8 +47,8 @@
 
 		&.active button,
 		&.active span {
-			// background-color: $primaryColor;
-			color: $primaryColor;
+			// background-color: $primary-color;
+			color: $primary-color;
 			// font-weight: bold;
 		}
 
@@ -128,7 +128,7 @@
 
 		.icon-update-arrows {
 			font-size: 30px;
-			color: $primaryColor;
+			color: $primary-color;
 			margin-right: 15px;
 		}
 

@@ -62,7 +62,7 @@
     & + .popUpContainer {margin-top: 20px;}
 
   	.modal-title {
-  		color: $primaryColor;
+  		color: $primary-color;
   		font-size: $large;
   		text-align: center;
   		padding: 0 10px;
@@ -96,7 +96,7 @@
     }
 
     &:hover > i:before {
-      color: $primaryColor;
+      color: $primary-color;
     }
   }
 

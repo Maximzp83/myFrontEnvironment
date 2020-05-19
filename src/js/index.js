@@ -29,7 +29,7 @@ $(document).ready(function() {
 	// console.log(dropDown)	
 	// =================Include Modules==============================
 
-	@@include('testModule.js')
+	@@include('testModule.js');
 
   /*@@include('frames/PopupModule.js')*/
   /*@@include('frames/ValidationModule.js')*/
@@ -50,7 +50,7 @@ $(document).ready(function() {
 	glob.pageOverlay = document.getElementById('pageOverlay');
 
 	if (!$('body')) {console.log('jQuery Error')}
-	// console.log(test);
+	console.log(test);
 
 	/*$('.mainHeader').on('click', '.menu-button', function(e) {
 		globFunc.toggleButtonContent(this)	

@@ -1,52 +1,4 @@
-body {
-	font-size: $pageFontSize;
-	font-family: $mainFont;
-	color: $mainFontColor;
-	position: relative;
-}
-body.js_pageOverlayOpen {	overflow: hidden;}
-
-// ------
-.mainWrapper {
-	max-width: $pageMaxWidth;
-	margin: 0 auto;
-	box-sizing: border-box;
-	overflow: hidden;
-}
-/* .contentWrapper {
-	overflow: hidden;
-} */
-.page {
-	background-color: $mainBackgroundColor;
-	// padding-bottom: 50px;
-
-	// background-image: url('../img/city-background.svg');
-	// background-repeat: no-repeat;
-	// background-position-y: bottom;
-	// background-size: auto 170px;
-	// padding: 0 0 130px 0;
-
-	.page-container {position: relative;}
-}
-
-.pageSection,
-.mcontainer {
-	background-color: inherit;
-}
-
-.pageBackgroundWrapper {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	z-index: -50;
-	background-color: $mainBackgroundColor;
-}
-
-.wrapperBlock > * {
-  width: 100%;
-}
+.wrapperBlock > * { width: 100%; }
 
 .inlineImg {
 	background-repeat: no-repeat;
@@ -75,7 +27,7 @@ body.js_pageOverlayOpen {	overflow: hidden;}
 
 .bordered {border: 1px solid $borderColor;}
 .rounded {border-radius: 5px;}
-.highlighted {color: $primaryColor;}
+.highlighted {color: $primary-color;}
 .alert {color: red;}
 // ---------Position--------
 .relative {position: relative;}
@@ -165,7 +117,7 @@ input, select {
 // }
 
 .shadowInput { 
-	border-color: $primaryColor;
+	border-color: $primary-color;
 	// border-width: 2px;
 
 	&:focus {

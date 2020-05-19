@@ -29,9 +29,11 @@ ol.decimal {
 .light {font-weight: 300; }
 .ultra-light {font-weight: 200;}
 
-.primaryColor {color: $primaryColor!important;}
+.italic {font-style: italic;}
 
-
+.primary-color {color: $primary-color!important;}
+// .tertiary-color {color: $tertiary-color!important;}
+.muted {color: $text-muted; }
 .title {
 	font-family: $titleFont;
 	& + * {	margin-top: 15px;	}
@@ -41,7 +43,12 @@ ol.decimal {
 	margin-top: 10px;
 	font-size: 0.6em;
 }
-.page-title {	font-size: $pageTitleFontSize; }
+.page-title {
+	font-size: $pageTitleFontSize; 
+	& + * {margin-top: 25px;}
+}
+
+.common-title { font-size: $titleFontSize; }
 .section-title { font-size: $sectionTitleFontSize; }
 .sectionBlock-title {	font-size: $sectionBlockTitleFontSize; }
 .article-title { font-size: $articleTitleFontSize; }
@@ -50,7 +57,7 @@ ol.decimal {
 
 .category-page-title {
 	font-size: 16px; font-weight: 600;
-	color: $fifthColor;
+	// color: $fifth-color;
 }
 
 .list-title {

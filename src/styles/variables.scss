@@ -1,6 +1,6 @@
 // ======Main Options=======
 /* -----Color------- */
-$primaryColor: #01C4FC;  
+$primary-color: #01C4FC;  
 $secondaryColor: #00024D; 
 $tertiaryColor: #E8E8E8;	
 $fourthColor: #252829; 
@@ -20,6 +20,7 @@ $mainFontColor: #000;
 $secondaryFontColor: $white;
 $descriptionTextColor: #6A6A6A;
 $subDescriptionColor: rgba(13, 13, 15, 0.5);
+$text-muted: #aaa;
 
 $titleFont: $mainFont;
 $titleFontSize: 32px;
@@ -55,10 +56,10 @@ $headerBottomFontColor: #fff;
 $footerColor: $secondaryColor;
 $footerFontColor: #fff;
 
-$mobileMenuColor: $primaryColor;
+$mobileMenuColor: $primary-color;
 
 $formElementsBorderColor: #DAD8D8;
-$formElementsFocusBorderColor: $primaryColor;
+$formElementsFocusBorderColor: $primary-color;
 
 $borderColor: #EDEded;
 
